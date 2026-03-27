@@ -56,6 +56,19 @@ export function HeroSection() {
         scrub: 1,
       },
     })
+
+    // Scroll indicator disappears on scroll
+    gsap.to('.hero-scroll', {
+      opacity: 0,
+      y: 20,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: heroRef.current,
+        start: '5% top',
+        end: '15% top',
+        scrub: 1,
+      },
+    })
   }, { scope: heroRef })
 
   return (
