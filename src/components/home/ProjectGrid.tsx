@@ -37,7 +37,7 @@ export function ProjectGrid() {
             <p className="grid-title text-sm tracking-[0.15em] uppercase mb-2 opacity-0" style={{ color: '#888888' }}>
               Travaux selectionnes
             </p>
-            <h2 className="grid-title text-3xl md:text-5xl font-light tracking-tight opacity-0">
+            <h2 className="grid-title font-display text-3xl md:text-5xl font-light tracking-tight opacity-0">
               Projets<span className="text-[#cbfb78]">.</span>
             </h2>
           </div>

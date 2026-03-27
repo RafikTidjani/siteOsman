@@ -54,10 +54,10 @@ export function Loader({ onComplete }: LoaderProps) {
       style={{ background: '#333333' }}
     >
       <div className="text-center">
-        <span className="block text-[8rem] md:text-[12rem] font-light tabular-nums leading-none" style={{ color: 'rgba(244,237,222,0.15)' }}>
+        <span className="block font-display text-[8rem] md:text-[12rem] font-light tabular-nums leading-none" style={{ color: 'rgba(244,237,222,0.15)' }}>
           {String(count).padStart(3, '0')}
         </span>
-        <p className="loader-name text-2xl md:text-3xl tracking-[0.3em] uppercase mt-6 opacity-0" style={{ color: '#F4EDDE' }}>
+        <p className="loader-name font-display text-2xl md:text-3xl tracking-[0.3em] uppercase mt-6 opacity-0" style={{ color: '#F4EDDE' }}>
           Osman Adi
         </p>
         <p className="loader-name text-sm tracking-[0.2em] uppercase mt-2 opacity-0" style={{ color: 'rgba(244,237,222,0.5)' }}>

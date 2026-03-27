@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { AppShell } from '@/components/layout/AppShell'
 
 export const metadata: Metadata = {
-  title: 'Osman Adi — Direction Artistique & Design Graphique',
+  title: {
+    default: 'Osman Adi — Direction Artistique & Design Graphique',
+    template: '%s | Osman Adi',
+  },
   description:
     'Portfolio de Osman Adi, directeur artistique et designer graphique. Branding, identite visuelle, edition et direction artistique.',
   keywords: [
@@ -13,10 +17,22 @@ export const metadata: Metadata = {
     'portfolio',
     'Osman Adi',
   ],
+  metadataBase: new URL('https://osmanadi.com'),
   openGraph: {
     title: 'Osman Adi — Direction Artistique',
     description: 'Portfolio de Osman Adi, directeur artistique et designer graphique.',
     type: 'website',
+    locale: 'fr_FR',
+    siteName: 'Osman Adi',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Osman Adi — Direction Artistique',
+    description: 'Portfolio de Osman Adi, directeur artistique et designer graphique.',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 }
 
@@ -28,14 +44,13 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
-        {/* Preload fonts from Fontshare */}
         <link
           href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=satoshi@300,400,500,700&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen antialiased" suppressHydrationWarning>
-        {children}
+      <body className="min-h-screen antialiased font-body" suppressHydrationWarning>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   )

@@ -3,6 +3,9 @@ import { useRef } from 'react'
 import Image from 'next/image'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface ProjectHeroProps {
   title: string
@@ -41,19 +44,29 @@ export function ProjectHero({ title, category, year, client, image }: ProjectHer
       { scale: 1, duration: 1.5, ease: 'power3.out' },
       '-=0.8'
     )
+
+    // Parallax on cover image
+    gsap.to('.project-hero-image img', {
+      y: '15%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.project-hero-image',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1,
+      },
+    })
   }, { scope: heroRef })
 
   return (
     <section ref={heroRef} className="pt-32 pb-12 md:pb-24 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
-        {/* Title */}
         <div className="overflow-hidden mb-8">
-          <h1 className="project-hero-title text-4xl sm:text-6xl md:text-8xl font-light tracking-tight">
+          <h1 className="project-hero-title font-display text-4xl sm:text-6xl md:text-8xl font-light tracking-tight">
             {title}
           </h1>
         </div>
 
-        {/* Meta */}
         <div className="flex flex-wrap gap-8 md:gap-16 mb-12 md:mb-16">
           <div className="project-hero-meta opacity-0">
             <p className="text-xs tracking-[0.15em] uppercase mb-1" style={{ color: '#888888' }}>
@@ -75,7 +88,6 @@ export function ProjectHero({ title, category, year, client, image }: ProjectHer
           </div>
         </div>
 
-        {/* Cover Image */}
         <div className="project-hero-image relative aspect-[16/9] overflow-hidden">
           <Image
             src={image}

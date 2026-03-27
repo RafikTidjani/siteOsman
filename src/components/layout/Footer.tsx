@@ -9,53 +9,87 @@ import { MagneticButton } from '@/components/ui/MagneticButton'
 gsap.registerPlugin(ScrollTrigger)
 
 const socialLinks = [
-  { label: 'Instagram', href: '#' },
-  { label: 'Behance', href: '#' },
-  { label: 'LinkedIn', href: '#' },
+  { label: 'Instagram', href: 'https://instagram.com/osman.adi' },
+  { label: 'Behance', href: 'https://behance.net/osmanadi' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/osmanadi' },
 ]
 
 export function Footer() {
   const footerRef = useRef<HTMLElement>(null)
 
   useGSAP(() => {
+    // CTA text reveal — each letter staggers in
+    const ctaChars = footerRef.current?.querySelectorAll('.cta-char')
+    if (ctaChars) {
+      gsap.fromTo(
+        ctaChars,
+        { y: '100%', opacity: 0 },
+        {
+          y: '0%',
+          opacity: 1,
+          stagger: 0.03,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.footer-cta',
+            start: 'top 85%',
+          },
+        }
+      )
+    }
+
+    // Subtitle + bottom section fade in
     gsap.fromTo(
-      '.footer-content',
-      { y: 60, opacity: 0 },
+      '.footer-fade',
+      { y: 30, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 1,
+        stagger: 0.1,
+        duration: 0.8,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: footerRef.current,
-          start: 'top 90%',
+          start: 'top 80%',
         },
       }
     )
   }, { scope: footerRef })
 
+  const ctaText = 'Collaborons.'
+  const ctaChars = ctaText.split('')
+
   return (
     <footer ref={footerRef} className="px-6 md:px-12 py-16 md:py-24 border-t border-[#333333]/10">
-      <div className="footer-content max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* CTA */}
-        <div className="mb-16 md:mb-24">
-          <p className="text-sm tracking-[0.15em] uppercase mb-4" style={{ color: '#888888' }}>
+        <div className="footer-cta mb-16 md:mb-24">
+          <p className="footer-fade text-sm tracking-[0.15em] uppercase mb-6" style={{ color: '#888888' }}>
             Un projet en tete ?
           </p>
           <Link
             href="/contact"
-            className="text-4xl md:text-6xl lg:text-8xl font-light tracking-tight transition-colors duration-300 hover:text-[#cbfb78]"
+            className="group inline-block"
             data-cursor-hover
             data-cursor-text="Parlons"
           >
-            Collaborons.
+            <span className="overflow-hidden inline-block">
+              {ctaChars.map((char, i) => (
+                <span
+                  key={i}
+                  className="cta-char inline-block font-display text-4xl md:text-6xl lg:text-8xl font-light tracking-tight transition-colors duration-300 group-hover:text-[#cbfb78]"
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </span>
+              ))}
+            </span>
           </Link>
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
+        <div className="footer-fade flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
           <div>
-            <p className="text-xl md:text-2xl font-medium tracking-[0.15em] uppercase mb-4">
+            <p className="text-xl md:text-2xl font-display font-medium tracking-[0.15em] uppercase mb-4">
               Osman Adi
             </p>
             <p className="text-sm" style={{ color: '#888888' }}>

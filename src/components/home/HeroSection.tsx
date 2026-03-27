@@ -2,6 +2,9 @@
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export function HeroSection() {
   const heroRef = useRef<HTMLElement>(null)
@@ -28,22 +31,47 @@ export function HeroSection() {
       { opacity: 1, duration: 0.6 },
       '-=0.3'
     )
+
+    // Parallax on scroll — title moves up faster
+    gsap.to('.hero-title-wrap', {
+      y: -120,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: heroRef.current,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1,
+      },
+    })
+
+    // Subtitle fades out on scroll
+    gsap.to('.hero-subtitle', {
+      opacity: 0,
+      y: -40,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: heroRef.current,
+        start: '30% top',
+        end: '60% top',
+        scrub: 1,
+      },
+    })
   }, { scope: heroRef })
 
   return (
     <section
       ref={heroRef}
-      className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24"
+      className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 relative"
     >
-      <div className="max-w-7xl mx-auto w-full">
+      <div className="hero-title-wrap max-w-7xl mx-auto w-full">
         {/* Name */}
         <div className="overflow-hidden mb-2">
-          <h1 className="hero-line text-[3rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] font-light leading-[0.9] tracking-tight">
+          <h1 className="hero-line font-display text-[3rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] font-light leading-[0.9] tracking-tight">
             Osman
           </h1>
         </div>
         <div className="overflow-hidden mb-8">
-          <h1 className="hero-line text-[3rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] font-light leading-[0.9] tracking-tight">
+          <h1 className="hero-line font-display text-[3rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] font-light leading-[0.9] tracking-tight">
             Adi<span className="text-[#cbfb78]">.</span>
           </h1>
         </div>
@@ -66,8 +94,8 @@ export function HeroSection() {
         <span className="text-xs tracking-[0.2em] uppercase" style={{ color: '#888888' }}>
           Scroll
         </span>
-        <div className="w-[1px] h-8 bg-[#333333]/30 relative overflow-hidden">
-          <div className="w-full h-full bg-[#333333] animate-pulse origin-top" />
+        <div className="scroll-indicator w-[1px] h-8 bg-[#333333]/30 relative overflow-hidden">
+          <div className="w-full h-full bg-[#333333]" />
         </div>
       </div>
     </section>

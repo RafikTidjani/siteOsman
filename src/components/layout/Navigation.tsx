@@ -61,14 +61,12 @@ export function Navigation() {
         ref={navRef}
         className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 md:px-12 py-6 mix-blend-difference"
       >
-        {/* Logo */}
         <Link href="/" className="group" data-cursor-hover>
-          <span className="text-lg md:text-xl font-medium tracking-[0.15em] uppercase text-[#F4EDDE] transition-colors duration-300 group-hover:text-[#cbfb78]">
+          <span className="font-display text-lg md:text-xl font-medium tracking-[0.15em] uppercase text-[#F4EDDE] transition-colors duration-300 group-hover:text-[#cbfb78]">
             Osman Adi
           </span>
         </Link>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <Link
@@ -86,7 +84,6 @@ export function Navigation() {
           ))}
         </div>
 
-        {/* Mobile Burger */}
         <MagneticButton
           className="md:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5"
           onClick={toggleMenu}
@@ -104,7 +101,6 @@ export function Navigation() {
         </MagneticButton>
       </nav>
 
-      {/* Mobile Menu Overlay */}
       {isOpen && (
         <div
           ref={menuRef}
@@ -116,7 +112,7 @@ export function Navigation() {
               key={link.href}
               href={link.href}
               onClick={() => toggleMenu()}
-              className="menu-link text-4xl md:text-6xl font-light tracking-[0.1em] uppercase opacity-0"
+              className="menu-link font-display text-4xl md:text-6xl font-light tracking-[0.1em] uppercase opacity-0"
               style={{ color: '#F4EDDE' }}
               data-cursor-hover
             >

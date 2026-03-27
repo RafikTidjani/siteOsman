@@ -14,11 +14,12 @@ interface SceneProps {
 
 export function Scene({ projects }: SceneProps) {
   return (
-    <div className="fixed inset-0 -z-10">
+    <div className="absolute inset-0">
       <Canvas
         camera={{ position: [0, 0, 5], fov: 50 }}
         gl={{ antialias: true, alpha: true }}
         dpr={[1, 2]}
+        style={{ background: '#F4EDDE' }}
       >
         <Suspense fallback={null}>
           <ProjectUniverse projects={projects} />
