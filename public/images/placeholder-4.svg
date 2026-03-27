@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="bg4" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F4EDDE"/>
+      <stop offset="100%" style="stop-color:#F2E9D4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg4)"/>
+  <!-- Grid pattern -->
+  <line x1="200" y1="0" x2="200" y2="800" stroke="#cbfb78" stroke-width="0.5" opacity="0.15"/>
+  <line x1="400" y1="0" x2="400" y2="800" stroke="#cbfb78" stroke-width="0.5" opacity="0.15"/>
+  <line x1="600" y1="0" x2="600" y2="800" stroke="#cbfb78" stroke-width="0.5" opacity="0.15"/>
+  <line x1="800" y1="0" x2="800" y2="800" stroke="#cbfb78" stroke-width="0.5" opacity="0.15"/>
+  <line x1="1000" y1="0" x2="1000" y2="800" stroke="#cbfb78" stroke-width="0.5" opacity="0.15"/>
+  <line x1="0" y1="200" x2="1200" y2="200" stroke="#cbfb78" stroke-width="0.5" opacity="0.15"/>
+  <line x1="0" y1="400" x2="1200" y2="400" stroke="#cbfb78" stroke-width="0.5" opacity="0.15"/>
+  <line x1="0" y1="600" x2="1200" y2="600" stroke="#cbfb78" stroke-width="0.5" opacity="0.15"/>
+  <!-- Diamond shapes at intersections -->
+  <polygon points="400,200 420,220 400,240 380,220" fill="#cbfb78" opacity="0.2"/>
+  <polygon points="800,200 820,220 800,240 780,220" fill="#cbfb78" opacity="0.2"/>
+  <polygon points="400,600 420,620 400,640 380,620" fill="#cbfb78" opacity="0.2"/>
+  <polygon points="800,600 820,620 800,640 780,620" fill="#cbfb78" opacity="0.2"/>
+  <polygon points="200,400 220,420 200,440 180,420" fill="#cbfb78" opacity="0.25"/>
+  <polygon points="1000,400 1020,420 1000,440 980,420" fill="#cbfb78" opacity="0.25"/>
+  <!-- Large rotated square -->
+  <rect x="470" y="270" width="260" height="260" fill="none" stroke="#333333" stroke-width="1" opacity="0.06" transform="rotate(45, 600, 400)"/>
+  <!-- Number -->
+  <text x="600" y="420" font-family="Georgia, serif" font-size="180" fill="#333333" text-anchor="middle" opacity="0.12">04</text>
+  <text x="600" y="480" font-family="Georgia, serif" font-size="24" fill="#333333" text-anchor="middle" opacity="0.25">Project</text>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F4EDDE"/>
+      <stop offset="100%" style="stop-color:#EDE4D0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg1)"/>
+  <!-- Diagonal lines pattern -->
+  <line x1="0" y1="200" x2="200" y2="0" stroke="#cbfb78" stroke-width="1.5" opacity="0.4"/>
+  <line x1="0" y1="400" x2="400" y2="0" stroke="#cbfb78" stroke-width="1.5" opacity="0.3"/>
+  <line x1="0" y1="600" x2="600" y2="0" stroke="#cbfb78" stroke-width="1.5" opacity="0.25"/>
+  <line x1="0" y1="800" x2="800" y2="0" stroke="#cbfb78" stroke-width="1.5" opacity="0.2"/>
+  <line x1="200" y1="800" x2="1000" y2="0" stroke="#cbfb78" stroke-width="1.5" opacity="0.15"/>
+  <line x1="400" y1="800" x2="1200" y2="0" stroke="#cbfb78" stroke-width="1.5" opacity="0.2"/>
+  <line x1="600" y1="800" x2="1200" y2="200" stroke="#cbfb78" stroke-width="1.5" opacity="0.25"/>
+  <line x1="800" y1="800" x2="1200" y2="400" stroke="#cbfb78" stroke-width="1.5" opacity="0.3"/>
+  <line x1="1000" y1="800" x2="1200" y2="600" stroke="#cbfb78" stroke-width="1.5" opacity="0.4"/>
+  <!-- Corner accents -->
+  <rect x="40" y="40" width="120" height="120" fill="none" stroke="#cbfb78" stroke-width="2" opacity="0.5"/>
+  <rect x="1040" y="640" width="120" height="120" fill="none" stroke="#cbfb78" stroke-width="2" opacity="0.5"/>
+  <!-- Large circle -->
+  <circle cx="900" cy="250" r="150" fill="none" stroke="#333333" stroke-width="1" opacity="0.08"/>
+  <circle cx="900" cy="250" r="100" fill="none" stroke="#333333" stroke-width="1" opacity="0.06"/>
+  <!-- Number -->
+  <text x="600" y="420" font-family="Georgia, serif" font-size="180" fill="#333333" text-anchor="middle" opacity="0.12">01</text>
+  <!-- Subtitle -->
+  <text x="600" y="480" font-family="Georgia, serif" font-size="24" fill="#333333" text-anchor="middle" opacity="0.25">Project</text>
+</svg>

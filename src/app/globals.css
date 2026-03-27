@@ -1,26 +1,191 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --font-display: var(--font-clash-display);
+  --font-body: var(--font-satoshi);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #F4EDDE;
+  --foreground: #333333;
+  --accent: #cbfb78;
+  --muted: #888888;
+  --font-clash-display: 'Clash Display', system-ui, sans-serif;
+  --font-satoshi: 'Satoshi', system-ui, sans-serif;
+}
+
+/* Smooth scroll disabled — Lenis handles it */
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-satoshi);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Selection */
+::selection {
+  background: var(--accent);
+  color: var(--foreground);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--foreground);
+  border-radius: 2px;
+}
+
+/* Hide default cursor globally for custom cursor */
+* {
+  cursor: none !important;
+}
+
+/* Loader overlay */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Page transition */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+/* Magnetic button */
+.magnetic-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.magnetic-btn:hover {
+  color: var(--accent);
+}
+
+/* Text split animation helper */
+.char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* Image reveal mask */
+.image-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-reveal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--background);
+  transform-origin: left;
+}
+
+/* Navigation link underline animation */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Grid line decorations */
+.grid-line {
+  position: absolute;
+  background: var(--foreground);
+  opacity: 0.08;
+}
+
+/* Project card hover state */
+.project-card {
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.project-card:hover {
+  transform: scale(0.98);
+}
+
+/* Grain overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }

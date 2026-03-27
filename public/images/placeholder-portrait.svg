@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+  <defs>
+    <linearGradient id="bgP" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F4EDDE"/>
+      <stop offset="100%" style="stop-color:#EDE3CC"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="40%">
+      <stop offset="0%" style="stop-color:#cbfb78;stop-opacity:0.06"/>
+      <stop offset="100%" style="stop-color:#cbfb78;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#bgP)"/>
+  <!-- Subtle radial glow -->
+  <rect width="600" height="800" fill="url(#glow)"/>
+  <!-- Abstract portrait silhouette suggestion -->
+  <ellipse cx="300" cy="280" rx="90" ry="110" fill="none" stroke="#333333" stroke-width="1" opacity="0.06"/>
+  <ellipse cx="300" cy="280" rx="70" ry="90" fill="none" stroke="#333333" stroke-width="0.8" opacity="0.05"/>
+  <!-- Shoulders suggestion -->
+  <path d="M160,420 Q300,370 440,420" fill="none" stroke="#333333" stroke-width="1" opacity="0.06"/>
+  <path d="M180,440 Q300,395 420,440" fill="none" stroke="#333333" stroke-width="0.8" opacity="0.05"/>
+  <!-- Decorative arcs -->
+  <path d="M50,100 Q300,50 550,100" fill="none" stroke="#cbfb78" stroke-width="1.5" opacity="0.2"/>
+  <path d="M50,700 Q300,750 550,700" fill="none" stroke="#cbfb78" stroke-width="1.5" opacity="0.2"/>
+  <!-- Vertical accent lines -->
+  <line x1="80" y1="200" x2="80" y2="600" stroke="#cbfb78" stroke-width="0.8" opacity="0.15"/>
+  <line x1="520" y1="200" x2="520" y2="600" stroke="#cbfb78" stroke-width="0.8" opacity="0.15"/>
+  <!-- Corner brackets -->
+  <path d="M40,40 L40,90 M40,40 L90,40" fill="none" stroke="#cbfb78" stroke-width="2" opacity="0.35"/>
+  <path d="M560,40 L560,90 M560,40 L510,40" fill="none" stroke="#cbfb78" stroke-width="2" opacity="0.35"/>
+  <path d="M40,760 L40,710 M40,760 L90,760" fill="none" stroke="#cbfb78" stroke-width="2" opacity="0.35"/>
+  <path d="M560,760 L560,710 M560,760 L510,760" fill="none" stroke="#cbfb78" stroke-width="2" opacity="0.35"/>
+  <!-- Small diamond accents -->
+  <polygon points="300,520 310,535 300,550 290,535" fill="#cbfb78" opacity="0.15"/>
+  <polygon points="300,570 306,580 300,590 294,580" fill="#cbfb78" opacity="0.1"/>
+  <!-- Label -->
+  <text x="300" y="660" font-family="Georgia, serif" font-size="18" fill="#333333" text-anchor="middle" opacity="0.25" letter-spacing="4">PORTRAIT</text>
+</svg>
