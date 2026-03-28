@@ -6,6 +6,7 @@ import { Navigation } from './Navigation'
 import { Footer } from './Footer'
 import { Loader } from './Loader'
 import { CustomCursor } from '@/components/ui/CustomCursor'
+import { ContactPopup } from '@/components/ui/ContactPopup'
 import { useLenis } from '@/hooks/useLenis'
 import { usePreloader } from '@/hooks/usePreloader'
 
@@ -39,6 +40,8 @@ export function AppShell({ children }: AppShellProps) {
       </AnimatePresence>
 
       <Footer />
+
+      <ContactPopup />
 
       <div className="grain-overlay" />
     </>

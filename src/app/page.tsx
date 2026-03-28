@@ -1,212 +1,180 @@
 'use client'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
 import { HeroSection } from '@/components/home/HeroSection'
-import { projects } from '@/lib/projects'
+import { categories } from '@/lib/projects'
 import { ImageReveal } from '@/components/ui/ImageReveal'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState(0)
-  const sectionRefs = useRef<(HTMLElement | null)[]>([])
-  const navRef = useRef<HTMLDivElement>(null)
+  const [activeCategory, setActiveCategory] = useState<string | null>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
 
-  const scrollToSection = (index: number) => {
-    const el = sectionRefs.current[index]
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
-
-  // Track active section on scroll
-  useEffect(() => {
-    const observers = sectionRefs.current.map((ref, i) => {
-      if (!ref) return null
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(i)
-        },
-        { threshold: 0.3 }
-      )
-      observer.observe(ref)
-      return observer
-    })
-    return () => observers.forEach((obs) => obs?.disconnect())
-  }, [])
+  const selectedCategory = categories.find((c) => c.slug === activeCategory)
+  const isDark = selectedCategory?.bgColor === '#1a1a2e'
 
   useGSAP(() => {
-    if (!navRef.current) return
+    if (!contentRef.current || !activeCategory) return
     gsap.fromTo(
-      navRef.current,
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: navRef.current, start: 'top 90%' },
-      }
+      '.project-block',
+      { y: 60, opacity: 0 },
+      { y: 0, opacity: 1, stagger: 0.15, duration: 0.8, ease: 'power3.out' }
     )
-  }, { scope: navRef })
-
-  const isDark = (bg: string) => bg === '#1a1a2e'
+  }, { dependencies: [activeCategory], scope: contentRef })
 
   return (
     <>
       <HeroSection />
 
-      {/* Side navigation — vertical dots + project names */}
-      <div
-        ref={navRef}
-        className="fixed right-6 md:right-10 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-end gap-6 opacity-0"
-      >
-        {projects.map((project, i) => (
-          <button
-            key={project.slug}
-            onClick={() => scrollToSection(i)}
-            className="group flex items-center gap-3"
-            data-cursor-hover
-          >
-            {/* Label — appears on hover */}
-            <span
-              className="text-xs tracking-[0.1em] uppercase opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 mix-blend-difference text-[#F4EDDE]"
-            >
-              {project.title}
-            </span>
-            {/* Dot */}
-            <span
-              className="block rounded-full transition-all duration-500 mix-blend-difference"
-              style={{
-                width: activeSection === i ? 28 : 8,
-                height: 8,
-                background: activeSection === i ? project.accentColor : 'rgba(244,237,222,0.5)',
-                borderRadius: activeSection === i ? 4 : 999,
-              }}
-            />
-          </button>
-        ))}
-      </div>
+      {/* Category selector */}
+      <section className="px-6 md:px-12 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-xs tracking-[0.15em] uppercase mb-8" style={{ color: '#888888' }}>
+            Realisations
+          </p>
 
-      {/* Mobile tab bar */}
-      <div className="sticky top-20 z-50 px-4 py-3 md:hidden">
-        <div className="flex items-center justify-center gap-2 bg-[#333333]/90 backdrop-blur-md rounded-full p-1.5">
-          {projects.map((project, i) => (
-            <button
-              key={project.slug}
-              onClick={() => scrollToSection(i)}
-              className="relative px-4 py-2 text-[10px] tracking-[0.1em] uppercase rounded-full transition-all duration-400"
-              style={{
-                background: activeSection === i ? project.accentColor : 'transparent',
-                color: activeSection === i ? '#333333' : 'rgba(244,237,222,0.6)',
-              }}
-            >
-              {String(i + 1).padStart(2, '0')}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Project sections */}
-      {projects.map((project, i) => {
-        const dark = isDark(project.bgColor)
-        const mutedColor = dark ? 'rgba(244,237,222,0.4)' : '#888888'
-        const borderColor = dark ? 'rgba(244,237,222,0.12)' : 'rgba(51,51,51,0.1)'
-
-        return (
-          <section
-            key={project.slug}
-            id={`project-${i}`}
-            ref={(el) => { sectionRefs.current[i] = el }}
-            className="min-h-screen px-6 md:px-12 py-24 md:py-32 transition-colors duration-700"
-            style={{
-              background: project.bgColor,
-              color: dark ? '#F4EDDE' : '#333333',
-            }}
-          >
-            <div className="max-w-7xl mx-auto">
-              {/* Section header */}
-              <div className="flex items-center gap-4 mb-12">
-                <span
-                  className="font-display text-6xl md:text-8xl font-light leading-none"
-                  style={{ color: project.accentColor, opacity: 0.2 }}
+          {/* Category cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {categories.map((cat) => {
+              const isActive = activeCategory === cat.slug
+              return (
+                <button
+                  key={cat.slug}
+                  onClick={() => setActiveCategory(isActive ? null : cat.slug)}
+                  className="group relative overflow-hidden rounded-2xl border-2 transition-all duration-500 text-left p-6 md:p-8"
+                  style={{
+                    borderColor: isActive ? cat.accentColor : 'rgba(51,51,51,0.1)',
+                    background: isActive ? cat.accentColor : 'transparent',
+                  }}
+                  data-cursor-hover
                 >
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div className="flex-1">
-                  <span className="text-xs tracking-[0.15em] uppercase block mb-1" style={{ color: mutedColor }}>
-                    {project.category}
-                  </span>
-                  <div className="h-[1px]" style={{ background: borderColor }} />
-                </div>
-              </div>
-
-              {/* Title with highlighted word */}
-              <h2 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight mb-4">
-                {project.title}
-                <span style={{ color: project.accentColor }}>.</span>
-              </h2>
-
-              {/* Client emphasized */}
-              <p className="text-lg md:text-xl mb-12">
-                Pour <span className="font-medium" style={{ borderBottom: `2px solid ${project.accentColor}` }}>{project.client}</span>
-                <span style={{ color: mutedColor }}> — {project.year}</span>
-              </p>
-
-              {/* Cover image */}
-              <div className="relative aspect-[16/9] overflow-hidden rounded-lg mb-16">
-                <Image
-                  src={project.coverImage}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                  sizes="100vw"
-                />
-              </div>
-
-              {/* Description with highlighted keywords */}
-              <div className="max-w-3xl mb-16">
-                <p className="text-lg md:text-xl leading-relaxed">
-                  {project.description}
-                </p>
-              </div>
-
-              {/* Gallery */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                {project.gallery.slice(1).map((img, j) => (
-                  <ImageReveal
-                    key={j}
-                    src={img}
-                    alt={`${project.title} — ${j + 2}`}
-                    width={800}
-                    height={600}
-                    className="w-full rounded-lg"
-                  />
-                ))}
-              </div>
-
-              {/* Tools as inline flow */}
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="text-xs tracking-[0.15em] uppercase mr-2" style={{ color: mutedColor }}>
-                  Realise avec
-                </span>
-                {project.tools.map((tool) => (
+                  {/* Big number */}
                   <span
-                    key={tool}
-                    className="px-4 py-2 text-sm rounded-full border transition-colors duration-300 hover:border-current"
-                    style={{ borderColor: borderColor }}
+                    className="font-display text-5xl md:text-7xl font-light leading-none block mb-4 transition-colors duration-300"
+                    style={{
+                      color: isActive ? 'rgba(51,51,51,0.2)' : 'rgba(51,51,51,0.08)',
+                    }}
                   >
-                    {tool}
+                    {String(categories.indexOf(cat) + 1).padStart(2, '0')}
                   </span>
-                ))}
-              </div>
+                  <p
+                    className="font-display text-lg md:text-xl font-medium tracking-tight transition-colors duration-300"
+                    style={{
+                      color: isActive ? '#333333' : undefined,
+                    }}
+                  >
+                    {cat.name}
+                  </p>
+                  <p className="text-xs mt-1 transition-colors duration-300" style={{ color: isActive ? 'rgba(51,51,51,0.6)' : '#888888' }}>
+                    {cat.projects.length} projets
+                  </p>
+
+                  {/* Hover underline */}
+                  <div
+                    className="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full transition-all duration-500"
+                    style={{ background: cat.accentColor }}
+                  />
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects for selected category */}
+      {selectedCategory && (
+        <section
+          ref={contentRef}
+          className="px-6 md:px-12 py-16 md:py-24 transition-colors duration-500"
+          style={{
+            background: selectedCategory.bgColor,
+            color: isDark ? '#F4EDDE' : '#333333',
+          }}
+        >
+          <div className="max-w-7xl mx-auto">
+            {/* Category header */}
+            <div className="flex items-center gap-4 mb-16">
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light tracking-tight">
+                {selectedCategory.name}
+                <span style={{ color: selectedCategory.accentColor }}>.</span>
+              </h2>
+              <div className="flex-1 h-[1px]" style={{ background: isDark ? 'rgba(244,237,222,0.12)' : 'rgba(51,51,51,0.1)' }} />
             </div>
-          </section>
-        )
-      })}
+
+            {/* Projects */}
+            <div className="space-y-24 md:space-y-32">
+              {selectedCategory.projects.map((project, pi) => (
+                <div key={project.title} className="project-block opacity-0">
+                  {/* Project header */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <span
+                      className="font-display text-4xl md:text-6xl font-light"
+                      style={{ color: selectedCategory.accentColor, opacity: 0.3 }}
+                    >
+                      {String(pi + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <h3 className="font-display text-2xl md:text-3xl font-light tracking-tight">
+                        {project.title}
+                      </h3>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {project.tools.map((tool) => (
+                          <span
+                            key={tool}
+                            className="text-[10px] tracking-[0.1em] uppercase px-2.5 py-1 rounded-full border"
+                            style={{ borderColor: isDark ? 'rgba(244,237,222,0.15)' : 'rgba(51,51,51,0.12)' }}
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p
+                    className="text-base md:text-lg leading-relaxed max-w-2xl mb-8"
+                    style={{ color: isDark ? 'rgba(244,237,222,0.7)' : '#666666' }}
+                  >
+                    {project.description}
+                  </p>
+
+                  {/* 3 images grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                    {project.images.map((img, ii) => (
+                      <div key={ii} className={ii === 0 ? 'md:col-span-2 md:row-span-2' : ''}>
+                        {ii === 0 ? (
+                          <div className="relative aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-lg">
+                            <Image
+                              src={img}
+                              alt={`${project.title} — ${ii + 1}`}
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 66vw"
+                            />
+                          </div>
+                        ) : (
+                          <ImageReveal
+                            src={img}
+                            alt={`${project.title} — ${ii + 1}`}
+                            width={600}
+                            height={450}
+                            className="w-full rounded-lg"
+                          />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   )
 }

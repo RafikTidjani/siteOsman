@@ -97,7 +97,7 @@ export function HeroSection() {
           </p>
 
           <p className="hero-subtitle text-sm tracking-[0.1em] uppercase opacity-0" style={{ color: '#888888' }}>
-            Portfolio 2024
+            Realisations 2024
           </p>
         </div>
       </div>

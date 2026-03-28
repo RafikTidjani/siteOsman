@@ -1,85 +1,121 @@
-export interface Project {
-  slug: string
+export interface ProjectItem {
   title: string
-  client: string
-  category: string
-  year: number
   description: string
-  coverImage: string
-  gallery: string[]
+  images: string[]
   tools: string[]
-  // Visual identity per sub-project
+}
+
+export interface Category {
+  slug: string
+  name: string
   accentColor: string
   bgColor: string
+  projects: ProjectItem[]
 }
 
-export const projects: Project[] = [
+export const categories: Category[] = [
   {
-    slug: 'maison-lumiere',
-    title: 'Maison Lumiere',
-    client: 'Maison Lumiere Paris',
-    category: 'Branding',
-    year: 2024,
-    description:
-      "Creation de l'identite visuelle complete pour une maison de haute couture parisienne. Le projet englobe le logo, la typographie, la papeterie, le packaging et les supports digitaux. L'approche se veut minimaliste et raffinee, refletant l'elegance de la marque.",
-    coverImage: '/images/placeholder-1.svg',
-    gallery: ['/images/placeholder-1.svg', '/images/placeholder-2.svg', '/images/placeholder-3.svg'],
-    tools: ['Illustrator', 'Photoshop', 'InDesign', 'Figma'],
+    slug: 'illustration',
+    name: 'Illustration',
     accentColor: '#cbfb78',
     bgColor: '#F4EDDE',
+    projects: [
+      {
+        title: 'Portraits Urbains',
+        description: 'Serie d\'illustrations de portraits stylises, melant traits expressifs et couleurs vives pour capturer l\'essence de la vie urbaine.',
+        images: ['/images/placeholder-1.svg', '/images/placeholder-2.svg', '/images/placeholder-3.svg'],
+        tools: ['Illustrator', 'Photoshop', 'Procreate'],
+      },
+      {
+        title: 'Faune Geometrique',
+        description: 'Collection d\'illustrations animaliers construites a partir de formes geometriques pures. Un equilibre entre abstraction et reconnaissance.',
+        images: ['/images/placeholder-2.svg', '/images/placeholder-4.svg', '/images/placeholder-6.svg'],
+        tools: ['Illustrator', 'Figma'],
+      },
+      {
+        title: 'Natures Mortes',
+        description: 'Reinterpretation contemporaine de natures mortes classiques en illustration digitale, avec un jeu de textures et de lumiere.',
+        images: ['/images/placeholder-3.svg', '/images/placeholder-5.svg', '/images/placeholder-1.svg'],
+        tools: ['Photoshop', 'Procreate'],
+      },
+    ],
   },
   {
-    slug: 'festival-nuit-blanche',
-    title: 'Festival Nuit Blanche',
-    client: 'Ville de Paris',
-    category: 'Direction Artistique',
-    year: 2024,
-    description:
-      "Direction artistique pour le festival annuel Nuit Blanche. Conception des affiches, de la signaletique, du programme et de la communication digitale. Un univers graphique nocturne et immersif.",
-    coverImage: '/images/placeholder-2.svg',
-    gallery: ['/images/placeholder-2.svg', '/images/placeholder-3.svg', '/images/placeholder-4.svg'],
-    tools: ['Photoshop', 'Illustrator', 'After Effects'],
+    slug: 'branding',
+    name: 'Branding',
     accentColor: '#a78bfa',
     bgColor: '#1a1a2e',
+    projects: [
+      {
+        title: 'Maison Lumiere',
+        description: 'Identite visuelle complete pour une maison de couture parisienne. Logo, typographie, papeterie, packaging et supports digitaux.',
+        images: ['/images/placeholder-4.svg', '/images/placeholder-1.svg', '/images/placeholder-5.svg'],
+        tools: ['Illustrator', 'Photoshop', 'InDesign'],
+      },
+      {
+        title: 'Studio Mineral',
+        description: 'Branding pour un studio de design d\'interieur specialise dans les materiaux bruts. Logo, charte graphique et site web.',
+        images: ['/images/placeholder-5.svg', '/images/placeholder-3.svg', '/images/placeholder-2.svg'],
+        tools: ['Figma', 'Illustrator', 'Photoshop'],
+      },
+      {
+        title: 'Cafe Botanica',
+        description: 'Creation de l\'univers visuel d\'un coffee shop bio. Logo, packaging, menu et communication sur les reseaux sociaux.',
+        images: ['/images/placeholder-6.svg', '/images/placeholder-2.svg', '/images/placeholder-4.svg'],
+        tools: ['Illustrator', 'InDesign', 'Photoshop'],
+      },
+    ],
   },
   {
-    slug: 'atelier-botanique',
-    title: 'Atelier Botanique',
-    client: 'Atelier Botanique',
-    category: 'Identite Visuelle',
-    year: 2023,
-    description:
-      "Identite visuelle pour un concept store alliant botanique et design. Logo, charte graphique, packaging et amenagement interieur. Un dialogue entre nature et minimalisme.",
-    coverImage: '/images/placeholder-3.svg',
-    gallery: ['/images/placeholder-3.svg', '/images/placeholder-4.svg', '/images/placeholder-5.svg'],
-    tools: ['Illustrator', 'InDesign', 'Figma'],
+    slug: 'projet',
+    name: 'Projet',
     accentColor: '#34d399',
     bgColor: '#f0fdf4',
+    projects: [
+      {
+        title: 'Festival Nuit Blanche',
+        description: 'Direction artistique pour le festival Nuit Blanche. Affiches, signaletique, programme et communication digitale pour un univers nocturne immersif.',
+        images: ['/images/placeholder-2.svg', '/images/placeholder-6.svg', '/images/placeholder-1.svg'],
+        tools: ['Photoshop', 'Illustrator', 'After Effects'],
+      },
+      {
+        title: 'Revue Ephemere',
+        description: 'Direction artistique et mise en page d\'une revue culturelle trimestrielle. Typographie editoriale, choix iconographiques et direction photo.',
+        images: ['/images/placeholder-4.svg', '/images/placeholder-3.svg', '/images/placeholder-5.svg'],
+        tools: ['InDesign', 'Photoshop', 'Illustrator'],
+      },
+      {
+        title: 'Exposition Horizons',
+        description: 'Conception de l\'identite visuelle et des supports de communication pour une exposition d\'art contemporain en galerie.',
+        images: ['/images/placeholder-1.svg', '/images/placeholder-5.svg', '/images/placeholder-3.svg'],
+        tools: ['InDesign', 'Photoshop', 'After Effects'],
+      },
+    ],
   },
   {
-    slug: 'revue-ephemere',
-    title: 'Revue Ephemere',
-    client: 'Editions Ephemere',
-    category: 'Edition',
-    year: 2023,
-    description:
-      "Direction artistique et mise en page d'une revue culturelle trimestrielle. Typographie editoriale, mise en page, choix iconographiques et direction photo.",
-    coverImage: '/images/placeholder-4.svg',
-    gallery: ['/images/placeholder-4.svg', '/images/placeholder-5.svg', '/images/placeholder-6.svg'],
-    tools: ['InDesign', 'Photoshop', 'Illustrator'],
+    slug: 'curiosite',
+    name: 'Curiosite',
     accentColor: '#fb923c',
     bgColor: '#fffbeb',
+    projects: [
+      {
+        title: 'Typo Experimentale',
+        description: 'Experimentations typographiques melant lettrage a la main, glitch et deformations. Exploration des limites de la lisibilite.',
+        images: ['/images/placeholder-3.svg', '/images/placeholder-1.svg', '/images/placeholder-6.svg'],
+        tools: ['Illustrator', 'After Effects'],
+      },
+      {
+        title: 'Generative Patterns',
+        description: 'Motifs generes par des regles algorithmiques puis retravailles a la main. Un dialogue entre logique mathematique et sensibilite artistique.',
+        images: ['/images/placeholder-5.svg', '/images/placeholder-4.svg', '/images/placeholder-2.svg'],
+        tools: ['Figma', 'Processing', 'Illustrator'],
+      },
+      {
+        title: 'Collages Numeriques',
+        description: 'Compositions visuelles par superposition d\'elements photographiques, typographiques et illustres. Un exercice de style libre.',
+        images: ['/images/placeholder-6.svg', '/images/placeholder-3.svg', '/images/placeholder-1.svg'],
+        tools: ['Photoshop', 'Illustrator'],
+      },
+    ],
   },
 ]
-
-export function getProjectBySlug(slug: string): Project | undefined {
-  return projects.find((p) => p.slug === slug)
-}
-
-export function getAdjacentProjects(slug: string) {
-  const index = projects.findIndex((p) => p.slug === slug)
-  return {
-    prev: index > 0 ? projects[index - 1] : null,
-    next: index < projects.length - 1 ? projects[index + 1] : null,
-  }
-}
