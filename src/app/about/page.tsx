@@ -9,16 +9,11 @@ import { MagneticButton } from '@/components/ui/MagneticButton'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const skills = [
-  { name: 'Photoshop', level: 90 },
-  { name: 'Illustrator', level: 85 },
-  { name: 'InDesign', level: 80 },
-  { name: 'After Effects', level: 75 },
-  { name: 'Figma', level: 70 },
-  { name: 'Premiere Pro', level: 65 },
+const tools = [
+  'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Figma', 'Premiere Pro',
 ]
 
-const softSkills = [
+const domains = [
   'Direction Artistique',
   'Identite Visuelle',
   'Branding',
@@ -34,33 +29,45 @@ const experiences = [
     year: '2024 — 2026',
     role: 'Master Design Graphique & Communication',
     company: 'ESMA Montpellier',
-    type: 'diplome',
+    type: 'diplome' as const,
+    details: 'Formation approfondie en direction artistique, design graphique et communication visuelle. Projets de creation d\'identites visuelles, d\'editions et de motion design pour des clients reels.',
   },
   {
     year: '2022 — 2023',
     role: 'BAC+3 Charge de Communication et Webmarketing',
     company: 'ESGM Mulhouse',
-    type: 'diplome',
+    type: 'diplome' as const,
+    details: 'Specialisation en strategie de communication digitale, gestion de projet web et marketing. Acquisition de competences en webmarketing, reseaux sociaux et analyse de performance.',
   },
   {
     year: 'Sept. 2022 — Juin 2023',
-    role: 'Charge de communication (alternance)',
+    role: 'Charge de communication',
     company: 'BIGMAT Bringel',
-    type: 'experience',
-    details: 'Gestion du site web, communication interne et externe, gestion des reseaux, annonces promotionnelles.',
+    type: 'experience' as const,
+    badge: 'Alternance',
+    details: 'Gestion et developpement du site web de l\'entreprise. Communication interne et externe, gestion des reseaux sociaux. Creation et gestion des annonces de destockages et promotionnelles.',
   },
   {
     year: '2020 — 2022',
     role: 'DUT Metier du Multimedia et de l\'Internet',
     company: 'IUT Mulhouse',
-    type: 'diplome',
+    type: 'diplome' as const,
+    details: 'Formation polyvalente couvrant le design web, le developpement front-end, l\'audiovisuel et la communication digitale. Projets collaboratifs et stages en entreprise.',
   },
   {
     year: 'Avr. — Juin 2022',
     role: 'Assistant Communication',
     company: 'BMW Motorrad',
-    type: 'experience',
-    details: 'Creation de flyers, visuels TV, posts Instagram et Facebook, mise en place du Marketplace.',
+    type: 'experience' as const,
+    badge: 'Stage',
+    details: 'Creation de 3 flyers promotionnels et d\'un visuel TV. Creation de posts Instagram et Facebook. Mise en place du Marketplace Facebook. Creations de visuels pour l\'entreprise.',
+  },
+  {
+    year: '2019 — 2020',
+    role: 'Bac STI2D — mention Assez Bien',
+    company: 'Lycee Jean-Mermoz',
+    type: 'diplome' as const,
+    details: 'Specialite ITEC (Innovation Technologique et Eco-Conception). Premiers pas dans la conception assistee par ordinateur et le design produit.',
   },
 ]
 
@@ -75,6 +82,7 @@ export default function AboutPage() {
   const formRef = useRef<HTMLFormElement>(null)
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
+  const [openExp, setOpenExp] = useState<number | null>(null)
 
   useGSAP(() => {
     gsap.fromTo(
@@ -86,14 +94,10 @@ export default function AboutPage() {
         stagger: 0.2,
         duration: 0.8,
         ease: 'power3.out',
-        scrollTrigger: {
-          trigger: pageRef.current,
-          start: 'top 70%',
-        },
+        scrollTrigger: { trigger: pageRef.current, start: 'top 70%' },
       }
     )
 
-    // Contact form animation
     gsap.fromTo(
       '.contact-field',
       { y: 40, opacity: 0 },
@@ -103,10 +107,7 @@ export default function AboutPage() {
         stagger: 0.1,
         duration: 0.8,
         ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '#contact',
-          start: 'top 80%',
-        },
+        scrollTrigger: { trigger: '#contact', start: 'top 80%' },
       }
     )
   }, { scope: pageRef })
@@ -152,59 +153,65 @@ export default function AboutPage() {
               Profil
             </p>
             <p className="text-lg md:text-xl leading-relaxed mb-6">
-              Jeune designer graphique polyvalent, je combine illustration,
-              motion design et direction artistique pour creer des identites
-              visuelles fortes et coherentes.
+              Jeune designer graphique polyvalent, je combine{' '}
+              <strong className="font-medium" style={{ borderBottom: '2px solid #cbfb78' }}>illustration</strong>,{' '}
+              <strong className="font-medium" style={{ borderBottom: '2px solid #cbfb78' }}>motion design</strong> et{' '}
+              <strong className="font-medium" style={{ borderBottom: '2px solid #cbfb78' }}>direction artistique</strong>{' '}
+              pour creer des identites visuelles fortes et coherentes.
             </p>
-            <p className="text-lg md:text-xl leading-relaxed mb-6">
+            <p className="text-lg md:text-xl leading-relaxed mb-8">
               Curieux, creatif et rigoureux, j&apos;aime transformer les idees
-              en concepts visuels impactants. Mon approche allie minimalisme
-              et expression pour chaque projet.
+              en concepts visuels impactants.
             </p>
-            <p className="text-base leading-relaxed" style={{ color: '#888888' }}>
-              Disponible pour des collaborations freelance, stages et projets
-              de direction artistique.
-            </p>
+            <MagneticButton
+              className="self-start px-8 py-3.5 bg-[#333333] text-[#F4EDDE] text-sm tracking-[0.15em] uppercase rounded-full transition-all duration-300 hover:bg-[#cbfb78] hover:text-[#333333]"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Me contacter
+            </MagneticButton>
           </div>
         </div>
       </section>
 
-      {/* Competences logiciels */}
+      {/* Maitrise */}
       <section className="px-6 md:px-12 py-16 md:py-24 border-t border-[#333333]/10">
         <div className="max-w-7xl mx-auto">
           <p className="about-section opacity-0 text-xs tracking-[0.15em] uppercase mb-12" style={{ color: '#888888' }}>
-            Competences
+            Maitrise complete
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            {/* Software skills */}
+            {/* Tools — grid of "mastered" badges */}
             <div className="about-section opacity-0">
-              <p className="text-sm tracking-[0.1em] uppercase mb-6" style={{ color: '#888888' }}>Logiciels</p>
-              <div className="space-y-5">
-                {skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm">{skill.name}</span>
-                      <span className="text-xs tabular-nums" style={{ color: '#888888' }}>{skill.level}%</span>
-                    </div>
-                    <div className="h-[2px] bg-[#333333]/10 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-[#cbfb78] rounded-full transition-all duration-1000"
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </div>
+              <p className="text-sm tracking-[0.1em] uppercase mb-6" style={{ color: '#888888' }}>
+                Outils du quotidien
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {tools.map((tool) => (
+                  <div
+                    key={tool}
+                    className="group relative px-5 py-4 border border-[#333333]/10 rounded-xl text-center transition-all duration-300 hover:bg-[#cbfb78] hover:border-[#cbfb78] hover:scale-[1.03]"
+                  >
+                    <p className="text-sm font-medium">{tool}</p>
+                    <span
+                      className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-[#cbfb78] flex items-center justify-center text-[10px] font-bold text-[#333333] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    >
+                      &#10003;
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Soft skills */}
+            {/* Domains */}
             <div className="about-section opacity-0">
-              <p className="text-sm tracking-[0.1em] uppercase mb-6" style={{ color: '#888888' }}>Domaines</p>
+              <p className="text-sm tracking-[0.1em] uppercase mb-6" style={{ color: '#888888' }}>
+                Domaines d&apos;expertise
+              </p>
               <div className="flex flex-wrap gap-3">
-                {softSkills.map((skill) => (
+                {domains.map((skill) => (
                   <span
                     key={skill}
-                    className="px-5 py-2.5 text-sm border border-[#333333]/15 rounded-full transition-colors duration-300 hover:bg-[#cbfb78] hover:border-[#cbfb78]"
+                    className="px-5 py-2.5 text-sm border border-[#333333]/15 rounded-full transition-all duration-300 hover:bg-[#cbfb78] hover:border-[#cbfb78] hover:scale-[1.03]"
                   >
                     {skill}
                   </span>
@@ -215,48 +222,90 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Parcours */}
+      {/* Parcours — accordion */}
       <section className="px-6 md:px-12 py-16 md:py-24 border-t border-[#333333]/10">
         <div className="max-w-7xl mx-auto">
           <p className="about-section opacity-0 text-xs tracking-[0.15em] uppercase mb-12" style={{ color: '#888888' }}>
             Parcours
           </p>
-          <div className="space-y-0">
-            {experiences.map((exp) => (
-              <div
-                key={exp.year + exp.role}
-                className="about-section opacity-0 flex flex-col md:flex-row md:items-start justify-between py-6 border-b border-[#333333]/10 group"
-              >
-                <div className="flex flex-col md:flex-row md:items-start gap-2 md:gap-12 flex-1">
-                  <span className="text-sm tabular-nums shrink-0 w-48" style={{ color: '#888888' }}>
-                    {exp.year}
-                  </span>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-1">
-                      <h3 className="text-lg md:text-xl font-display font-light tracking-tight transition-colors duration-300 group-hover:text-[#cbfb78]">
-                        {exp.role}
-                      </h3>
+          <div>
+            {experiences.map((exp, i) => {
+              const isOpen = openExp === i
+              return (
+                <div
+                  key={exp.year + exp.role}
+                  className="about-section opacity-0 border-b border-[#333333]/10"
+                >
+                  {/* Header — always visible */}
+                  <button
+                    className="w-full flex flex-col md:flex-row md:items-center justify-between py-6 text-left group"
+                    onClick={() => setOpenExp(isOpen ? null : i)}
+                    data-cursor-hover
+                  >
+                    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-8 flex-1">
+                      <span className="text-sm tabular-nums shrink-0 w-48" style={{ color: '#888888' }}>
+                        {exp.year}
+                      </span>
+                      <div className="flex items-center gap-3 flex-1">
+                        <h3 className="text-lg md:text-xl font-display font-light tracking-tight transition-colors duration-300 group-hover:text-[#cbfb78]">
+                          {exp.role}
+                        </h3>
+                        {/* Badges */}
+                        <span
+                          className="text-[10px] tracking-[0.15em] uppercase px-2.5 py-1 rounded-full border shrink-0"
+                          style={{
+                            borderColor: exp.type === 'diplome' ? '#cbfb78' : 'rgba(51,51,51,0.2)',
+                            color: exp.type === 'diplome' ? '#333333' : '#888888',
+                            background: exp.type === 'diplome' ? '#cbfb78' : 'transparent',
+                          }}
+                        >
+                          {exp.type === 'diplome' ? 'Formation' : (exp as { badge?: string }).badge || 'Pro'}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4 mt-2 md:mt-0">
+                      <span className="text-sm shrink-0" style={{ color: '#888888' }}>
+                        {exp.company}
+                      </span>
+                      {/* Toggle icon */}
                       <span
-                        className="text-[10px] tracking-[0.15em] uppercase px-2 py-0.5 rounded-full border"
+                        className="flex items-center justify-center w-8 h-8 rounded-full border border-[#333333]/15 transition-all duration-300 shrink-0"
                         style={{
-                          borderColor: exp.type === 'diplome' ? '#cbfb78' : 'rgba(51,51,51,0.2)',
-                          color: exp.type === 'diplome' ? '#cbfb78' : '#888888',
-                          background: exp.type === 'diplome' ? 'rgba(203,251,120,0.1)' : 'transparent',
+                          background: isOpen ? '#cbfb78' : 'transparent',
+                          borderColor: isOpen ? '#cbfb78' : 'rgba(51,51,51,0.15)',
                         }}
                       >
-                        {exp.type === 'diplome' ? 'Formation' : 'Pro'}
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          className="transition-transform duration-300"
+                          style={{ transform: isOpen ? 'rotate(45deg)' : 'rotate(0)' }}
+                        >
+                          <path d="M6 1v10M1 6h10" stroke={isOpen ? '#333333' : '#888888'} strokeWidth="1.5" strokeLinecap="round" />
+                        </svg>
                       </span>
                     </div>
-                    {exp.details && (
-                      <p className="text-sm mt-1" style={{ color: '#888888' }}>{exp.details}</p>
-                    )}
+                  </button>
+
+                  {/* Expandable details */}
+                  <div
+                    className="overflow-hidden transition-all duration-500 ease-out"
+                    style={{
+                      maxHeight: isOpen ? 200 : 0,
+                      opacity: isOpen ? 1 : 0,
+                    }}
+                  >
+                    <div className="pb-6 pl-0 md:pl-56">
+                      <p className="text-base leading-relaxed" style={{ color: '#888888' }}>
+                        {exp.details}
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <span className="text-sm mt-2 md:mt-0 shrink-0" style={{ color: '#888888' }}>
-                  {exp.company}
-                </span>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
@@ -266,12 +315,13 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <TextReveal
             as="h2"
-            className="text-3xl sm:text-5xl md:text-7xl font-display font-light tracking-tight mb-4"
+            className="text-3xl sm:text-5xl md:text-7xl font-display font-light tracking-tight mb-2"
           >
             Contact
           </TextReveal>
-          <p className="text-lg md:text-xl mb-16" style={{ color: '#888888' }}>
-            Parlons de votre prochain projet.
+          <p className="text-lg md:text-xl mb-16">
+            <span style={{ color: '#888888' }}>Un projet ? Une idee ?</span>{' '}
+            <strong className="font-medium" style={{ borderBottom: '2px solid #cbfb78' }}>Parlons-en.</strong>
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
@@ -289,9 +339,7 @@ export default function AboutPage() {
             ) : (
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
                 <div className="contact-field opacity-0">
-                  <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: '#888888' }}>
-                    Nom
-                  </label>
+                  <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: '#888888' }}>Nom</label>
                   <input
                     type="text"
                     required
@@ -302,9 +350,7 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="contact-field opacity-0">
-                  <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: '#888888' }}>
-                    Email
-                  </label>
+                  <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: '#888888' }}>Email</label>
                   <input
                     type="email"
                     required
@@ -315,9 +361,7 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="contact-field opacity-0">
-                  <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: '#888888' }}>
-                    Sujet
-                  </label>
+                  <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: '#888888' }}>Sujet</label>
                   <input
                     type="text"
                     required
@@ -328,9 +372,7 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="contact-field opacity-0">
-                  <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: '#888888' }}>
-                    Message
-                  </label>
+                  <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: '#888888' }}>Message</label>
                   <textarea
                     required
                     rows={4}
@@ -341,9 +383,7 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="contact-field opacity-0 pt-4">
-                  <MagneticButton
-                    className="px-10 py-4 bg-[#333333] text-[#F4EDDE] text-sm tracking-[0.15em] uppercase rounded-full transition-all duration-300 hover:bg-[#cbfb78] hover:text-[#333333]"
-                  >
+                  <MagneticButton className="px-10 py-4 bg-[#333333] text-[#F4EDDE] text-sm tracking-[0.15em] uppercase rounded-full transition-all duration-300 hover:bg-[#cbfb78] hover:text-[#333333]">
                     Envoyer
                   </MagneticButton>
                 </div>
@@ -354,21 +394,13 @@ export default function AboutPage() {
             <div className="space-y-12">
               <div className="contact-field opacity-0">
                 <p className="text-xs tracking-[0.15em] uppercase mb-3" style={{ color: '#888888' }}>Email</p>
-                <a
-                  href="mailto:osman.adi2768@gmail.com"
-                  className="text-xl md:text-2xl font-light transition-colors duration-300 hover:text-[#cbfb78]"
-                  data-cursor-hover
-                >
+                <a href="mailto:osman.adi2768@gmail.com" className="text-xl md:text-2xl font-light transition-colors duration-300 hover:text-[#cbfb78]" data-cursor-hover>
                   osman.adi2768@gmail.com
                 </a>
               </div>
               <div className="contact-field opacity-0">
                 <p className="text-xs tracking-[0.15em] uppercase mb-3" style={{ color: '#888888' }}>Telephone</p>
-                <a
-                  href="tel:+33614719176"
-                  className="text-xl md:text-2xl font-light transition-colors duration-300 hover:text-[#cbfb78]"
-                  data-cursor-hover
-                >
+                <a href="tel:+33614719176" className="text-xl md:text-2xl font-light transition-colors duration-300 hover:text-[#cbfb78]" data-cursor-hover>
                   06.14.71.91.76
                 </a>
               </div>
@@ -376,14 +408,7 @@ export default function AboutPage() {
                 <p className="text-xs tracking-[0.15em] uppercase mb-3" style={{ color: '#888888' }}>Reseaux</p>
                 <div className="flex flex-col gap-3">
                   {socials.map((s) => (
-                    <a
-                      key={s.label}
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-lg font-light transition-colors duration-300 hover:text-[#cbfb78]"
-                      data-cursor-hover
-                    >
+                    <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="text-lg font-light transition-colors duration-300 hover:text-[#cbfb78]" data-cursor-hover>
                       {s.label}
                     </a>
                   ))}
