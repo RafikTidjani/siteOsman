@@ -8,6 +8,9 @@ export interface Project {
   coverImage: string
   gallery: string[]
   tools: string[]
+  // Visual identity per sub-project
+  accentColor: string
+  bgColor: string
 }
 
 export const projects: Project[] = [
@@ -22,6 +25,8 @@ export const projects: Project[] = [
     coverImage: '/images/placeholder-1.svg',
     gallery: ['/images/placeholder-1.svg', '/images/placeholder-2.svg', '/images/placeholder-3.svg'],
     tools: ['Illustrator', 'Photoshop', 'InDesign', 'Figma'],
+    accentColor: '#cbfb78',
+    bgColor: '#F4EDDE',
   },
   {
     slug: 'festival-nuit-blanche',
@@ -34,6 +39,8 @@ export const projects: Project[] = [
     coverImage: '/images/placeholder-2.svg',
     gallery: ['/images/placeholder-2.svg', '/images/placeholder-3.svg', '/images/placeholder-4.svg'],
     tools: ['Photoshop', 'Illustrator', 'After Effects'],
+    accentColor: '#a78bfa',
+    bgColor: '#1a1a2e',
   },
   {
     slug: 'atelier-botanique',
@@ -46,6 +53,8 @@ export const projects: Project[] = [
     coverImage: '/images/placeholder-3.svg',
     gallery: ['/images/placeholder-3.svg', '/images/placeholder-4.svg', '/images/placeholder-5.svg'],
     tools: ['Illustrator', 'InDesign', 'Figma'],
+    accentColor: '#34d399',
+    bgColor: '#f0fdf4',
   },
   {
     slug: 'revue-ephemere',
@@ -58,30 +67,8 @@ export const projects: Project[] = [
     coverImage: '/images/placeholder-4.svg',
     gallery: ['/images/placeholder-4.svg', '/images/placeholder-5.svg', '/images/placeholder-6.svg'],
     tools: ['InDesign', 'Photoshop', 'Illustrator'],
-  },
-  {
-    slug: 'studio-mineral',
-    title: 'Studio Mineral',
-    client: 'Studio Mineral',
-    category: 'Branding',
-    year: 2023,
-    description:
-      "Branding complet pour un studio de design d'interieur specialise dans les materiaux bruts. Logo, identite, site web et supports de communication.",
-    coverImage: '/images/placeholder-5.svg',
-    gallery: ['/images/placeholder-5.svg', '/images/placeholder-6.svg', '/images/placeholder-1.svg'],
-    tools: ['Figma', 'Illustrator', 'Photoshop'],
-  },
-  {
-    slug: 'galerie-horizon',
-    title: 'Galerie Horizon',
-    client: 'Galerie Horizon',
-    category: 'Direction Artistique',
-    year: 2022,
-    description:
-      "Direction artistique pour une galerie d'art contemporain. Identite visuelle, catalogues d'exposition, cartons d'invitation et communication digitale.",
-    coverImage: '/images/placeholder-6.svg',
-    gallery: ['/images/placeholder-6.svg', '/images/placeholder-1.svg', '/images/placeholder-2.svg'],
-    tools: ['Photoshop', 'InDesign', 'After Effects'],
+    accentColor: '#fb923c',
+    bgColor: '#fffbeb',
   },
 ]
 

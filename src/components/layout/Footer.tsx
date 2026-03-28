@@ -68,7 +68,7 @@ export function Footer() {
             Un projet en tete ?
           </p>
           <Link
-            href="/contact"
+            href="/about#contact"
             className="group inline-block"
             data-cursor-hover
             data-cursor-text="Parlons"

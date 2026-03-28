@@ -9,7 +9,7 @@ import { MagneticButton } from '@/components/ui/MagneticButton'
 const navLinks = [
   { href: '/', label: 'Projets' },
   { href: '/about', label: 'A propos' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/about#contact', label: 'Contact' },
 ]
 
 export function Navigation() {
@@ -73,7 +73,7 @@ export function Navigation() {
               key={link.href}
               href={link.href}
               className={`nav-link text-sm tracking-[0.15em] uppercase transition-colors duration-300 ${
-                pathname === link.href
+                pathname === link.href || (link.href === '/about#contact' && pathname === '/about')
                   ? 'text-[#cbfb78]'
                   : 'text-[#F4EDDE] hover:text-[#cbfb78]'
               }`}
