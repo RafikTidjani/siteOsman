@@ -151,7 +151,7 @@ export function HeroSection() {
         </div>
 
         {/* Name */}
-        <div className="relative z-10">
+        <div className="relative z-10 text-center md:text-left">
           <div className="overflow-hidden mb-1">
             <h1 className="hero-line font-display text-[3.5rem] sm:text-[6rem] md:text-[8rem] lg:text-[11rem] font-light leading-[0.85] tracking-tight">
               Osman
@@ -164,8 +164,8 @@ export function HeroSection() {
           </div>
 
           {/* Subtitle row */}
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-6">
-            <p className="hero-subtitle text-sm md:text-base tracking-[0.15em] uppercase opacity-0" style={{ color: '#888888' }}>
+          <div className="flex flex-col items-center md:items-stretch md:flex-row md:items-end md:justify-between gap-4 md:gap-6">
+            <p className="hero-subtitle text-sm md:text-base tracking-[0.15em] uppercase opacity-0 text-center md:text-left" style={{ color: '#888888' }}>
               Direction Artistique<br />
               & Design Graphique
             </p>
@@ -176,13 +176,13 @@ export function HeroSection() {
         </div>
 
         {/* Mobile image strip */}
-        <div className="md:hidden flex gap-3 mt-10 overflow-hidden">
+        <div className="md:hidden flex justify-center gap-3 mt-10 overflow-hidden">
           {heroImages.slice(0, 3).map((img, i) => (
             <div
               key={i}
-              className="hero-img relative w-[140px] h-[100px] rounded-lg overflow-hidden opacity-0 shrink-0 shadow-lg"
+              className="hero-img relative w-[100px] h-[75px] rounded-lg overflow-hidden opacity-0 shrink-0 shadow-lg"
             >
-              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="140px" />
+              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="100px" />
             </div>
           ))}
         </div>
