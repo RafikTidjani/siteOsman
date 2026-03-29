@@ -15,9 +15,9 @@ const tools = [
 
 const domains = [
   'Direction Artistique',
-  'Identite Visuelle',
+  'Identité Visuelle',
   'Branding',
-  'Design Editorial',
+  'Design Éditorial',
   'Motion Design',
   'Illustration',
   'Communication Visuelle',
@@ -33,10 +33,10 @@ const experiences = [
     badge: 'Stage',
     details: [
       'Rebranding des marques Hamman et Boonel',
-      'Creation et gestion de contenus visuels et motion design pour les reseaux sociaux',
+      'Création et gestion de contenus visuels et motion design pour les réseaux sociaux',
       'Conception de supports print (flyers)',
-      'Realisation de vitrophanies',
-      'Creation de packaging',
+      'Réalisation de vitrophanies',
+      'Création de packaging',
     ],
   },
   {
@@ -44,19 +44,19 @@ const experiences = [
     role: 'Master Design Graphique & Communication',
     company: 'ESMA Montpellier',
     type: 'diplome' as const,
-    details: ['Obtention partielle — rattrapage en cours', 'Direction artistique, design graphique et communication visuelle', 'Projets reels pour clients'],
+    details: ['Obtention partielle — rattrapage en cours', 'Direction artistique, design graphique et communication visuelle', 'Projets réels pour clients'],
   },
   {
     year: 'Sept. 2022 — Juin 2023',
-    role: 'Charge de communication',
+    role: 'Chargé de communication',
     company: 'BIGMAT Bringel',
     type: 'experience' as const,
     badge: 'Alternance',
     details: [
-      'Gestion et developpement du site web',
+      'Gestion et développement du site web',
       'Communication interne et externe',
-      'Gestion des reseaux sociaux',
-      'Creation de contenus promotionnels',
+      'Gestion des réseaux sociaux',
+      'Création de contenus promotionnels',
     ],
   },
   {
@@ -66,33 +66,33 @@ const experiences = [
     type: 'experience' as const,
     badge: 'Stage',
     details: [
-      'Creation de supports print',
-      'Conception de contenus pour les reseaux sociaux',
-      'Realisation d\'un visuel pour affichage TV',
+      'Création de supports print',
+      'Conception de contenus pour les réseaux sociaux',
+      'Réalisation d\'un visuel pour affichage TV',
       'Mise en place du Marketplace Facebook',
-      'Creation de visuels de communication',
+      'Création de visuels de communication',
     ],
   },
   {
     year: '2022 — 2023',
-    role: 'Bachelor Charge de Communication et Webmarketing',
+    role: 'Bachelor Chargé de Communication et Webmarketing',
     company: 'ESGM Mulhouse',
     type: 'diplome' as const,
-    details: ['Strategie de communication digitale', 'Gestion de projet web et marketing'],
+    details: ['Stratégie de communication digitale', 'Gestion de projet web et marketing'],
   },
   {
     year: '2020 — 2022',
-    role: 'DUT Metiers du Multimedia et de l\'Internet',
+    role: 'DUT Métiers du Multimédia et de l\'Internet',
     company: 'IUT Mulhouse',
     type: 'diplome' as const,
-    details: ['Design web, developpement front-end, audiovisuel, communication digitale'],
+    details: ['Design web, développement front-end, audiovisuel, communication digitale'],
   },
   {
     year: '2019 — 2020',
     role: 'Bac STI2D (ITEC) — mention Assez Bien',
-    company: 'Lycee Jean-Mermoz',
+    company: 'Lycée Jean-Mermoz',
     type: 'diplome' as const,
-    details: ['Innovation Technologique et Eco-Conception'],
+    details: ['Innovation Technologique et Éco-Conception'],
   },
 ]
 
@@ -143,7 +143,7 @@ export default function AboutPage() {
       <section className="pt-32 pb-16 md:pb-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <TextReveal as="h1" className="text-4xl sm:text-6xl md:text-8xl font-display font-light tracking-tight mb-8" delay={0.5}>
-            A propos
+            À propos
           </TextReveal>
         </div>
       </section>
@@ -161,10 +161,10 @@ export default function AboutPage() {
               <strong className="font-medium" style={{ borderBottom: '2px solid #cbfb78' }}>illustration</strong>,{' '}
               <strong className="font-medium" style={{ borderBottom: '2px solid #cbfb78' }}>motion design</strong> et{' '}
               <strong className="font-medium" style={{ borderBottom: '2px solid #cbfb78' }}>direction artistique</strong>{' '}
-              pour creer des identites visuelles fortes et coherentes.
+              pour créer des identités visuelles fortes et cohérentes.
             </p>
             <p className="text-lg md:text-xl leading-relaxed mb-8">
-              Curieux, creatif et rigoureux, j&apos;aime transformer les idees en concepts visuels impactants.
+              Curieux, créatif et rigoureux, j&apos;aime transformer les idées en concepts visuels impactants.
             </p>
             <MagneticButton
               className="self-start px-8 py-3.5 bg-[#333333] text-[#F4EDDE] text-sm tracking-[0.15em] uppercase rounded-full transition-all duration-300 hover:bg-[#cbfb78] hover:text-[#333333]"
@@ -176,11 +176,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Maitrise */}
+      {/* Maîtrise */}
       <section className="px-6 md:px-12 py-16 md:py-24 border-t border-[#333333]/10">
         <div className="max-w-7xl mx-auto">
           <p className="about-section opacity-0 text-xs tracking-[0.15em] uppercase mb-12" style={{ color: '#888888' }}>
-            Maitrise complete
+            Maîtrise complète
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div className="about-section opacity-0">
@@ -275,14 +275,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Contact form — no phone, no email visible */}
+      {/* Contact */}
       <section id="contact" className="px-6 md:px-12 py-16 md:py-24 border-t border-[#333333]/10">
         <div className="max-w-7xl mx-auto">
           <TextReveal as="h2" className="text-3xl sm:text-5xl md:text-7xl font-display font-light tracking-tight mb-2">
             Contact
           </TextReveal>
           <p className="text-lg md:text-xl mb-16">
-            <span style={{ color: '#888888' }}>Un projet ? Une idee ?</span>{' '}
+            <span style={{ color: '#888888' }}>Un projet ? Une idée ?</span>{' '}
             <strong className="font-medium" style={{ borderBottom: '2px solid #cbfb78' }}>Parlons-en.</strong>
           </p>
 
@@ -293,7 +293,7 @@ export default function AboutPage() {
                   <h3 className="text-3xl md:text-5xl font-display font-light tracking-tight mb-4">
                     Merci<span className="text-[#cbfb78]">.</span>
                   </h3>
-                  <p className="text-lg" style={{ color: '#888888' }}>Votre message a bien ete envoye.</p>
+                  <p className="text-lg" style={{ color: '#888888' }}>Votre message a bien été envoyé.</p>
                 </div>
               </div>
             ) : (
@@ -323,7 +323,7 @@ export default function AboutPage() {
 
             <div className="space-y-12">
               <div className="contact-field opacity-0">
-                <p className="text-xs tracking-[0.15em] uppercase mb-3" style={{ color: '#888888' }}>Reseaux</p>
+                <p className="text-xs tracking-[0.15em] uppercase mb-3" style={{ color: '#888888' }}>Réseaux</p>
                 <div className="flex flex-col gap-3">
                   {socials.map((s) => (
                     <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"

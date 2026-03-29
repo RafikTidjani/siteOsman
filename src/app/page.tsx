@@ -55,7 +55,7 @@ export default function Home() {
       <section className="px-6 md:px-12 py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs tracking-[0.15em] uppercase mb-8" style={{ color: '#888888' }}>
-            Realisations
+            Réalisations
           </p>
 
           {/* Category cards */}
@@ -409,14 +409,14 @@ export default function Home() {
             {/* Header */}
             <div className="flex items-center gap-4 mb-16">
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light tracking-tight">
-                Curiosite
+                Curiosité
                 <span style={{ color: selectedCategory.accentColor }}>.</span>
               </h2>
               <div className="flex-1 h-[1px]" style={{ background: 'rgba(51,51,51,0.1)' }} />
             </div>
 
             <p className="text-base md:text-lg leading-relaxed max-w-2xl mb-12" style={{ color: '#666' }}>
-              Photos, dessins et experimentations visuelles. Une facette plus spontanee et exploratoire du travail.
+              Photos, dessins et expérimentations visuelles. Une facette plus spontanée et exploratoire du travail.
             </p>
 
             {/* Masonry-style grid */}
@@ -431,7 +431,7 @@ export default function Home() {
                   <div className="relative overflow-hidden rounded-lg">
                     <Image
                       src={img}
-                      alt={`Curiosite — ${ii + 1}`}
+                      alt={`Curiosité — ${ii + 1}`}
                       width={600}
                       height={800}
                       className="w-full h-auto transition-transform duration-700 group-hover:scale-105"

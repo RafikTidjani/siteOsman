@@ -8,16 +8,16 @@ export const metadata: Metadata = {
     template: '%s | Osman Adi',
   },
   description:
-    'Portfolio de Osman Adi, directeur artistique et designer graphique. Branding, identite visuelle, edition et direction artistique.',
+    'Portfolio de Osman Adi, directeur artistique et designer graphique. Branding, identité visuelle, édition et direction artistique.',
   keywords: [
     'direction artistique',
     'design graphique',
     'branding',
-    'identite visuelle',
+    'identité visuelle',
     'portfolio',
     'Osman Adi',
   ],
-  metadataBase: new URL('https://osmanadi.com'),
+  metadataBase: new URL('https://adiosmandesign.fr'),
   openGraph: {
     title: 'Osman Adi — Direction Artistique',
     description: 'Portfolio de Osman Adi, directeur artistique et designer graphique.',

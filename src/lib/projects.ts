@@ -35,7 +35,7 @@ export const categories: Category[] = [
       {
         title: 'Inktober 2024',
         description:
-          'Serie d\'illustrations realisees dans le cadre du defi Inktober 2024. Chaque jour, un animal et une scene de camping dessines a l\'encre.',
+          'Série d\'illustrations réalisées dans le cadre du défi Inktober 2024. Chaque jour, un animal et une scène de camping dessinés à l\'encre.',
         images: [
           '/images/illustration/inktober/autruche.jpg',
           '/images/illustration/inktober/camping.jpg',
@@ -53,7 +53,7 @@ export const categories: Category[] = [
       {
         title: 'Projets personnels',
         description:
-          'Illustrations personnelles inspirees d\'expressions du quotidien. Un exercice de style entre humour et graphisme.',
+          'Illustrations personnelles inspirées d\'expressions du quotidien. Un exercice de style entre humour et graphisme.',
         images: [
           '/images/illustration/personnel/allumette.png',
           '/images/illustration/personnel/Qalb-100.jpg',
@@ -71,13 +71,13 @@ export const categories: Category[] = [
       {
         title: 'Green Dorm Group',
         description:
-          'Rebranding complet de deux marques du consortium Green Dorm Group (secteur BTP) : Hamman et Boonel, a l\'occasion de l\'installation d\'un showroom a Pratteln.',
+          'Rebranding complet de deux marques du consortium Green Dorm Group (secteur BTP) : Hamman et Boonel, à l\'occasion de l\'installation d\'un showroom à Pratteln.',
         context:
           'Stage de 4 mois en tant que directeur artistique junior.',
         mission:
-          'Refonte de l\'identite visuelle de deux entites du groupe.',
+          'Refonte de l\'identité visuelle de deux entités du groupe.',
         intention:
-          'Creer une identite moderne, professionnelle et coherente avec le positionnement du groupe dans le secteur du batiment.',
+          'Créer une identité moderne, professionnelle et cohérente avec le positionnement du groupe dans le secteur du bâtiment.',
         images: [
           '/images/branding/green-dorm/logo boonel.png',
           '/images/branding/green-dorm/logo haman.png',
@@ -107,10 +107,10 @@ export const categories: Category[] = [
       {
         title: 'Logo MMI Mulhouse',
         description:
-          'Redesign du logo de la formation MMI afin de differencier la promotion des autres departements, souvent dotes d\'identites visuelles similaires.',
-        context: 'Projet realise dans le cadre de la formation MMI.',
+          'Redesign du logo de la formation MMI afin de différencier la promotion des autres départements, souvent dotés d\'identités visuelles similaires.',
+        context: 'Projet réalisé dans le cadre de la formation MMI.',
         intention:
-          'Apporter une identite forte et reconnaissable, en rupture avec les codes existants.',
+          'Apporter une identité forte et reconnaissable, en rupture avec les codes existants.',
         images: [
           '/images/branding/logo-mmi/Logo MMI Fond Clair.png',
           '/images/branding/logo-mmi/Logo MMI Fond Sombre.png',
@@ -125,9 +125,9 @@ export const categories: Category[] = [
       {
         title: 'Tennis Spirit',
         description:
-          'Identite visuelle dynamique et evolutive pour une ecole de tennis en Suisse. Logo initial cree en formation MMI, puis modernise recemment.',
+          'Identité visuelle dynamique et évolutive pour une école de tennis en Suisse. Logo initial créé en formation MMI, puis modernisé récemment.',
         intention:
-          'Transmettre une image sportive, dynamique et accessible, tout en assurant une coherence graphique durable.',
+          'Transmettre une image sportive, dynamique et accessible, tout en assurant une cohérence graphique durable.',
         images: [
           '/images/branding/tennis-spirit/logo_tennisspirit-masculine.png',
           '/images/branding/tennis-spirit/logo_tennisspirit-feminine.png',
@@ -143,11 +143,11 @@ export const categories: Category[] = [
       {
         title: 'Soyol',
         description:
-          'Identite visuelle d\'un produit innovant : un oeuf mollet vegetal, destine a etre presente au concours Ecotrophelia. Naming, logo, packaging et univers graphique complet.',
+          'Identité visuelle d\'un produit innovant : un œuf mollet végétal, destiné à être présenté au concours Écotrophélia. Naming, logo, packaging et univers graphique complet.',
         context:
-          'Projet realise a l\'ESMA Montpellier en collaboration avec l\'Institut Agro.',
+          'Projet réalisé à l\'ESMA Montpellier en collaboration avec l\'Institut Agro.',
         intention:
-          'Valoriser un produit innovant a travers une identite moderne, attractive et en accord avec les enjeux alimentaires et ecologiques actuels.',
+          'Valoriser un produit innovant à travers une identité moderne, attractive et en accord avec les enjeux alimentaires et écologiques actuels.',
         images: [
           '/images/branding/soyol/logo soyol.png',
           '/images/branding/soyol/charte graphique soyol.jpg',
@@ -174,19 +174,19 @@ export const categories: Category[] = [
     slug: 'projet',
     name: 'Projet',
     accentColor: '#034C3C',
-    bgColor: '#f0f0ea',
+    bgColor: '#F4EDDE',
     projects: [
       {
         title: 'Affiche "La Proie"',
         description:
-          'Affiche realisee pour un court-metrage. Un travail de composition et de direction artistique au service du recit cinematographique.',
+          'Affiche réalisée pour un court-métrage. Un travail de composition et de direction artistique au service du récit cinématographique.',
         images: ['/images/projet/la-proie.png'],
         tools: ['Photoshop', 'Illustrator'],
       },
       {
         title: 'Animation de bienvenue',
         description:
-          'Animation realisee pour un ancien portfolio. Presentee ici comme archive et souvenir d\'un travail passe.',
+          'Animation réalisée pour un ancien portfolio. Présentée ici comme archive et souvenir d\'un travail passé.',
         images: [],
         media: [
           {
@@ -198,35 +198,35 @@ export const categories: Category[] = [
         tools: ['After Effects'],
       },
       {
-        title: 'Memoire de stage — Green Dorm Group',
+        title: 'Mémoire de stage — Green Dorm Group',
         description:
-          'Memoire de stage redige dans le cadre du stage de 4 mois chez Green Dorm Group, documentant la demarche de direction artistique et de rebranding.',
+          'Mémoire de stage rédigé dans le cadre du stage de 4 mois chez Green Dorm Group, documentant la démarche de direction artistique et de rebranding.',
         images: [],
         media: [
           {
             type: 'pdf',
             src: '/images/projet/memoire-2025.pdf',
-            alt: 'Memoire de stage 2025',
+            alt: 'Mémoire de stage 2025',
           },
         ],
         tools: ['InDesign'],
       },
       {
-        title: 'Montpellier Coeur de Ville',
+        title: 'Montpellier Cœur de Ville',
         description:
-          'Animation motion design realisee pour la ville de Montpellier. Un travail alliant identite graphique et animation pour la communication urbaine.',
+          'Animation motion design réalisée pour la ville de Montpellier. Un travail alliant identité graphique et animation pour la communication urbaine.',
         images: [],
         media: [
           {
             type: 'video',
             src: '/images/projet/montpellier-coeur-de-ville.mp4',
-            alt: 'Animation Montpellier Coeur de Ville',
+            alt: 'Animation Montpellier Cœur de Ville',
           },
           {
             type: 'youtube',
             src: 'https://www.youtube.com/watch?v=afm5qj6g7XQ',
             videoId: 'afm5qj6g7XQ',
-            alt: 'Montpellier Coeur de Ville — YouTube',
+            alt: 'Montpellier Cœur de Ville — YouTube',
           },
         ],
         tools: ['After Effects', 'Illustrator'],
@@ -235,14 +235,14 @@ export const categories: Category[] = [
   },
   {
     slug: 'curiosite',
-    name: 'Curiosite',
+    name: 'Curiosité',
     accentColor: '#93032E',
     bgColor: '#F4EDDE',
     projects: [
       {
         title: 'Explorations visuelles',
         description:
-          'Photos, dessins et experimentations visuelles. Une facette plus spontanee et exploratoire du travail.',
+          'Photos, dessins et expérimentations visuelles. Une facette plus spontanée et exploratoire du travail.',
         images: [
           '/images/curiosite/IMG_1385.jpeg',
           '/images/curiosite/IMG_2677.jpeg',

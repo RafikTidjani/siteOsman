@@ -18,7 +18,7 @@ const heroImages = [
 const marqueeWords = [
   'Direction Artistique',
   'Branding',
-  'Identite Visuelle',
+  'Identité Visuelle',
   'Illustration',
   'Motion Design',
   'Packaging',

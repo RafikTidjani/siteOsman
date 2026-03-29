@@ -7,8 +7,8 @@ import { gsap } from 'gsap'
 import { MagneticButton } from '@/components/ui/MagneticButton'
 
 const navLinks = [
-  { href: '/', label: 'Realisations' },
-  { href: '/about', label: 'A propos' },
+  { href: '/', label: 'Réalisations' },
+  { href: '/about', label: 'À propos' },
 ]
 
 export function Navigation() {
