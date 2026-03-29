@@ -66,7 +66,7 @@ export const categories: Category[] = [
     slug: 'branding',
     name: 'Branding',
     accentColor: '#93032E',
-    bgColor: '#1a1a1a',
+    bgColor: '#F4EDDE',
     projects: [
       {
         title: 'Green Dorm Group',
