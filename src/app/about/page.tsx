@@ -152,7 +152,7 @@ export default function AboutPage() {
       <section className="px-6 md:px-12 pb-16 md:pb-24">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
           <div className="about-section opacity-0">
-            <ImageReveal src="/images/placeholder-portrait.svg" alt="Osman Adi" width={600} height={800} className="w-full" />
+            <ImageReveal src="/images/photo-a-propos.jpeg" alt="Osman Adi" width={600} height={800} className="w-full rounded-lg" />
           </div>
           <div className="about-section opacity-0 flex flex-col justify-center">
             <p className="text-xs tracking-[0.15em] uppercase mb-6" style={{ color: '#888888' }}>Profil</p>
