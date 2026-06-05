@@ -1,0 +1,18 @@
+.footer {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 24px clamp(16px, 4vw, 48px) 40px;
+  border-top: 1px solid var(--ink);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--fm), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--mid);
+}
+.mid { color: var(--ink); }
+.mid:hover { color: var(--red); }
+.right { color: var(--wm); }
