@@ -1,55 +1,85 @@
 export interface Dict {
-  nav_real: string; nav_about: string
-  hero_ey: string; avail: string; spec: string
-  sec01: string; proj: string; filters: string[]
-  parcours: string; outils: string; contact: string
-  cthl: string; ctelbl: string; ctavs: string; ctavt: string; cv_dl: string
-  logiciels: string; approche: string; apptxt: string
-  ah_ey: string; ah_sub: string; bio: string
-  disciplines: string[]
+  langbtn: string
+  nr: string; na: string; navportfolio: string
+  ey: string; avt: string
+  tplbl: string
+  srt: string; shc: string; pills: string[]
+  ctalbl: string; ctah: string; ctasub: string; ctabtn: string
+  ahey: string; ahloc: string; phlb: string; ahbio: string
+  legDesign: string; legMkt: string; legForm: string
+  parc: string; outils: string
+  solarlbl: string; solartxt: string
+  toolsPrim: string; toolsSec: string
+  ctit: string; cthl: string; ctelbl: string; ctavs: string; ctavt: string; ctrtop: string
+  sc: string[]; sch: string[]
   ctx_label: string; mission_label: string
+  proj: string
 }
 
 export const T: Record<'fr' | 'en', Dict> = {
   fr: {
-    nav_real: 'Réalisations', nav_about: 'À propos',
-    hero_ey: 'Direction Artistique & Design Graphique',
-    avail: 'Disponible pour une <strong>alternance</strong> — 2026',
-    spec: 'Spécialité —',
-    sec01: 'RÉALISATIONS', proj: 'projets',
-    filters: ['Design', 'Branding', 'Motion', 'Éditorial', 'Affiche'],
-    parcours: 'PARCOURS', outils: 'OUTILS & APPROCHE', contact: 'CONTACT',
+    langbtn: 'EN',
+    nr: 'Réalisations', na: 'À propos', navportfolio: 'Portfolio 2024–2026',
+    ey: 'Direction Artistique & Design Graphique',
+    avt: 'Disponible pour une <strong>ALTERNANCE</strong> — 2026',
+    tplbl: 'Spécialité —',
+    srt: 'RÉALISATIONS', shc: 'projets',
+    pills: ['Design', 'Branding', 'Motion', 'Éditorial', 'Affiche'],
+    ctalbl: 'Une idée ? Un projet ? Une collaboration ?',
+    ctah: 'Travaillons ensemble.',
+    ctasub: 'Discutons-en.',
+    ctabtn: 'Contactez-moi →',
+    ahey: 'Direction Artistique & Design Graphique',
+    ahloc: 'Mulhouse · Grand Est · Disponible pour missions',
+    phlb: 'Portrait',
+    ahbio: "Jeune directeur artistique polyvalent, formé au design graphique, à la communication digitale et au webmarketing depuis 2020. Mon travail navigue entre <strong>identité de marque, design éditorial et motion design</strong>.<br><br>Je conçois des visuels qui ont quelque chose à dire — <em>une esthétique brute et précise</em>, toujours au service du message.",
+    legDesign: 'Design / DA', legMkt: 'Marketing', legForm: 'Formation',
+    parc: 'PARCOURS', outils: 'OUTILS & APPROCHE',
+    solarlbl: 'Approche',
+    solartxt: "Je travaille par <em>itérations</em> — chaque version rapproche du juste. Le design doit être <strong>honnête</strong> : ni décoratif pour le décoratif, ni fonctionnel sans âme.",
+    toolsPrim: 'Principaux', toolsSec: 'Secondaires',
+    ctit: 'CONTACT',
     cthl: 'Travaillons\nensemble.',
-    ctelbl: 'Email direct', ctavs: 'Disponible — 2026',
+    ctelbl: 'Email direct',
+    ctavs: 'Disponible — 2026',
     ctavt: 'Ouvert aux stages, alternances et projets freelance. Basé à Mulhouse, mobilité possible.',
-    cv_dl: 'Télécharger',
-    logiciels: 'Logiciels', approche: 'Approche',
-    apptxt: "Je travaille par <em>itérations</em> — chaque version rapproche du juste. Le design doit être honnête : ni décoratif pour le décoratif, ni fonctionnel sans âme. Polyvalent par formation, je m'adapte.",
-    ah_ey: 'Direction Artistique & Design Graphique',
-    ah_sub: 'Mulhouse · Disponible pour missions',
-    bio: "Jeune directeur artistique polyvalent, formé au design graphique, à la communication digitale et au webmarketing depuis 2020. Mon travail navigue entre <strong>identité de marque, design éditorial et motion design</strong>.<br><br>Je conçois des visuels qui ont quelque chose à dire — <em>une esthétique brute et précise</em>, toujours au service du message.",
-    disciplines: ['Direction Artistique', 'Branding', 'Motion Design', 'Design Éditorial', 'Identité Visuelle', 'Illustration'],
+    ctrtop: 'Disponible pour stages, alternances & freelance',
+    sc: ['CV', 'Instagram', 'LinkedIn'],
+    sch: ['Télécharger', '@osman_adi', 'linkedin.com/in/osman-adi'],
     ctx_label: 'Contexte', mission_label: 'Mission',
+    proj: 'projets',
   },
   en: {
-    nav_real: 'Work', nav_about: 'About',
-    hero_ey: 'Art Direction & Graphic Design',
-    avail: 'Available for an <strong>apprenticeship</strong> — 2026',
-    spec: 'Specialty —',
-    sec01: 'PROJECTS', proj: 'projects',
-    filters: ['Design', 'Branding', 'Motion', 'Editorial', 'Poster'],
-    parcours: 'BACKGROUND', outils: 'TOOLS & APPROACH', contact: 'CONTACT',
+    langbtn: 'FR',
+    nr: 'Works', na: 'About', navportfolio: 'Portfolio 2024–2026',
+    ey: 'Artistic Direction & Graphic Design',
+    avt: 'Available for <strong>APPRENTICESHIP</strong> — 2026',
+    tplbl: 'Specialty —',
+    srt: 'WORKS', shc: 'projects',
+    pills: ['Design', 'Branding', 'Motion', 'Editorial', 'Poster'],
+    ctalbl: 'An idea? A project? A collaboration?',
+    ctah: "Let's work together.",
+    ctasub: "Let's talk.",
+    ctabtn: 'Contact me →',
+    ahey: 'Artistic Direction & Graphic Design',
+    ahloc: 'Mulhouse · Alsace · Available for projects',
+    phlb: 'Portrait',
+    ahbio: "Junior art director, trained in graphic design, digital communication and web marketing since 2020. My work navigates between <strong>brand identity, editorial design and motion design</strong>.<br><br>I create visuals that have something to say — <em>a raw and precise aesthetic</em>, always in service of the message.",
+    legDesign: 'Design / AD', legMkt: 'Marketing', legForm: 'Education',
+    parc: 'BACKGROUND', outils: 'TOOLS & APPROACH',
+    solarlbl: 'Approach',
+    solartxt: "I work through <em>iterations</em> — each version gets closer to the truth. Design must be <strong>honest</strong>: neither decorative for decoration's sake, nor functional without soul.",
+    toolsPrim: 'Primary', toolsSec: 'Secondary',
+    ctit: 'CONTACT',
     cthl: "Let's work\ntogether.",
-    ctelbl: 'Direct email', ctavs: 'Available — 2026',
-    ctavt: 'Open to internships, apprenticeships and freelance. Based in Mulhouse, open to relocation.',
-    cv_dl: 'Download',
-    logiciels: 'Tools', approche: 'Approach',
-    apptxt: "I work through <em>iterations</em> — each version gets closer to right. Design should be honest: neither decorative for its own sake, nor functional without soul. Versatile by training, I adapt.",
-    ah_ey: 'Art Direction & Graphic Design',
-    ah_sub: 'Mulhouse · Available for projects',
-    bio: "Junior art director with a versatile background in graphic design, digital communication and web marketing since 2020. My work navigates between <strong>brand identity, editorial design and motion design</strong>.<br><br>I create visuals that have something to say — <em>a raw and precise aesthetic</em>, always in service of the message.",
-    disciplines: ['Art Direction', 'Branding', 'Motion Design', 'Editorial Design', 'Visual Identity', 'Illustration'],
+    ctelbl: 'Direct email',
+    ctavs: 'Available — 2026',
+    ctavt: 'Open to internships, apprenticeships and freelance projects. Based in Mulhouse, open to mobility.',
+    ctrtop: 'Available for internships, apprenticeships & freelance',
+    sc: ['CV', 'Instagram', 'LinkedIn'],
+    sch: ['Download', '@osman_adi', 'linkedin.com/in/osman-adi'],
     ctx_label: 'Context', mission_label: 'Mission',
+    proj: 'projects',
   },
 }
 

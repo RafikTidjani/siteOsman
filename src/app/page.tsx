@@ -4,7 +4,8 @@ import dynamic from 'next/dynamic'
 import Nav from '@/components/Nav/Nav'
 import Hero from '@/components/Hero/Hero'
 import TypeBar from '@/components/TypeBar/TypeBar'
-import ProjectGrid from '@/components/ProjectGrid/ProjectGrid'
+import ProjectsSection from '@/components/Work/ProjectsSection'
+import CtaBand from '@/components/Work/CtaBand'
 import Footer from '@/components/Footer/Footer'
 
 const Intro = dynamic(() => import('@/components/Intro/Intro'), { ssr: false })
@@ -30,11 +31,10 @@ export default function Home() {
     <>
       {showIntro && <Intro onComplete={finishIntro} />}
       <Nav />
-      <main>
-        <Hero start={started} />
-        <TypeBar start={started} />
-        <ProjectGrid />
-      </main>
+      <Hero start={started} />
+      <TypeBar start={started} />
+      <ProjectsSection />
+      <CtaBand />
       <Footer />
     </>
   )

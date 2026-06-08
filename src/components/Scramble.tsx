@@ -4,7 +4,6 @@ import { useScramble } from '@/hooks/useScramble'
 interface Props {
   text: string
   className?: string
-  as?: 'span' | 'strong'
 }
 
 /** Texte avec scramble au survol (desktop uniquement, géré dans le hook). */

@@ -3,7 +3,7 @@ import Nav from '@/components/Nav/Nav'
 import Footer from '@/components/Footer/Footer'
 import AboutHero from '@/components/About/AboutHero'
 import Parcours from '@/components/About/Parcours'
-import Outils from '@/components/About/Outils'
+import Solar from '@/components/About/Solar'
 import Contact from '@/components/About/Contact'
 
 export const metadata: Metadata = {
@@ -16,12 +16,10 @@ export default function AboutPage() {
   return (
     <>
       <Nav />
-      <main>
-        <AboutHero />
-        <Parcours />
-        <Outils />
-        <Contact />
-      </main>
+      <AboutHero />
+      <Parcours />
+      <Solar />
+      <Contact />
       <Footer />
     </>
   )

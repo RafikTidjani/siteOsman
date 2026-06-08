@@ -1,17 +1,17 @@
 'use client'
-import { EMAIL } from '@/lib/constants'
-import { useLang } from '@/hooks/useLang'
-import styles from './Footer.module.css'
+import Link from 'next/link'
+import { SOCIALS } from '@/lib/constants'
 
 export default function Footer() {
-  const { lang } = useLang()
   return (
-    <footer className={styles.footer}>
-      <span className={styles.left}>© 2026 Osman Adi</span>
-      <a href={`mailto:${EMAIL}`} className={styles.mid}>{EMAIL}</a>
-      <span className={styles.right}>
-        {lang === 'fr' ? 'Mulhouse · France' : 'Mulhouse · France'}
-      </span>
+    <footer>
+      <Link href="/" className="flogo">OSMAN<span>.</span>ADI</Link>
+      <ul className="flinks2">
+        <li><a href={SOCIALS.instagram} target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><span className="fls">·</span></li>
+        <li><a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      </ul>
+      <span className="fcpy">© 2026 — adiosmandesign.fr</span>
     </footer>
   )
 }

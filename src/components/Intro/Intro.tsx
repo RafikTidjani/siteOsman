@@ -1,134 +1,121 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
-import styles from './Intro.module.css'
+import { useEffect, useRef } from 'react'
 
-const CHARS = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-const WORD = ['O', 'S', 'M', 'A', 'N', 'A', 'D', 'I'] // sans point ; gap après index 4
-
+const CH = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+const WD = ['O', 'S', 'M', 'A', 'N', 'A', 'D', 'I']
 const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
-const rand = () => CHARS[1 + Math.floor(Math.random() * (CHARS.length - 1))]
 
-interface Props {
-  onComplete: () => void
-}
-
-export default function Intro({ onComplete }: Props) {
+export default function Intro({ onComplete }: { onComplete: () => void }) {
   const rootRef = useRef<HTMLDivElement>(null)
-  const tops = useRef<(HTMLSpanElement | null)[]>([])
-  const bots = useRef<(HTMLSpanElement | null)[]>([])
-  const mids = useRef<(HTMLSpanElement | null)[]>([])
-  const midPanels = useRef<(HTMLDivElement | null)[]>([])
-  const [subVisible, setSubVisible] = useState(false)
-  const [hintVisible, setHintVisible] = useState(false)
   const done = useRef(false)
   const cancelled = useRef(false)
 
   useEffect(() => {
-    const setChar = (i: number, ch: string) => {
-      const c = ch === ' ' ? ' ' : ch
-      if (tops.current[i]) tops.current[i]!.textContent = c
-      if (bots.current[i]) bots.current[i]!.textContent = c
-      if (mids.current[i]) mids.current[i]!.textContent = c
-    }
+    const $ = (id: string) => document.getElementById(id)
 
-    const flipTo = async (i: number, target: string, speed: number) => {
-      const mid = midPanels.current[i]
-      const midSpan = mids.current[i]
-      const bot = bots.current[i]
-      const top = tops.current[i]
-      if (!mid || !midSpan || !bot || !top) return
-      const t = target === ' ' ? ' ' : target
-      // la moitié basse révélée = nouvelle lettre
-      bot.textContent = t
-      // le rabat (mid) montre encore l'ancienne lettre, puis bascule
-      mid.style.transition = `transform ${speed}ms cubic-bezier(.55,0,.7,1)`
-      mid.style.transform = 'rotateX(-90deg)'
-      await sleep(speed + 16)
+    const flipTo = (i: number, tg: string, sp: number) =>
+      new Promise<void>((r) => {
+        const tp = $('t' + i), bt = $('b' + i), md = $('m' + i), ms = $('ms' + i)
+        if (!tp || !bt || !md || !ms) return r()
+        const cu = tp.textContent || ' '
+        bt.textContent = tg
+        ms.textContent = cu
+        md.style.transition = 'none'
+        md.style.transform = 'rotateX(0deg)'
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          md.style.transition = `transform ${sp}ms cubic-bezier(.55,0,.7,1)`
+          md.style.transform = 'rotateX(-90deg)'
+          setTimeout(() => {
+            tp.textContent = tg
+            md.style.transition = 'none'
+            md.style.transform = 'rotateX(0deg)'
+            ms.textContent = tg
+            r()
+          }, sp + 16)
+        }))
+      })
+
+    const ac = async (i: number, tg: string, dl: number, cy: number) => {
+      await sleep(dl)
       if (cancelled.current) return
-      top.textContent = t
-      mid.style.transition = 'none'
-      mid.style.transform = 'rotateX(0deg)'
-      midSpan.textContent = t
-    }
-
-    const animateCell = async (i: number, target: string, delay: number, cycles: number) => {
-      await sleep(delay)
-      for (let c = 0; c < cycles; c++) {
+      const s = CH[Math.floor(Math.random() * CH.length)]
+      const tp = $('t' + i), bt = $('b' + i)
+      if (tp) tp.textContent = s
+      if (bt) bt.textContent = s
+      let ci = CH.indexOf(s); if (ci < 0) ci = 0
+      for (let j = 0; j < cy; j++) {
         if (cancelled.current) return
-        const isLast = c === cycles - 1
-        await flipTo(i, isLast ? target : rand(), isLast ? 160 : 70)
+        const last = j === cy - 1
+        const nc = last ? tg : CH[(ci + 1 + Math.floor(Math.random() * 4)) % CH.length]
+        const sp = last ? 165 : 46 + j * 9
+        await flipTo(i, nc, sp)
+        ci = CH.indexOf(nc); if (ci < 0) ci = 0
+        if (!last) await sleep(12)
       }
     }
 
-    const finishInstant = () => {
-      WORD.forEach((ch, i) => setChar(i, ch))
-    }
+    const finishInstant = () => WD.forEach((ch, i) => {
+      const tp = $('t' + i), bt = $('b' + i), ms = $('ms' + i)
+      if (tp) tp.textContent = ch
+      if (bt) bt.textContent = ch
+      if (ms) ms.textContent = ch
+    })
 
     const launch = () => {
       if (done.current) return
       done.current = true
       cancelled.current = true
       finishInstant()
-      rootRef.current?.classList.add(styles.out)
+      rootRef.current?.classList.add('out')
       setTimeout(() => onComplete(), 850)
     }
 
     const run = async () => {
-      const jobs: Promise<void>[] = []
-      // OSMAN : cells 0..4
-      for (let i = 0; i < 5; i++) jobs.push(animateCell(i, WORD[i], i * 105, 9))
-      // ADI : cells 5..7
-      for (let i = 5; i < 8; i++) jobs.push(animateCell(i, WORD[i], 260 + (i - 5) * 125, 8))
-      await Promise.all(jobs)
+      const ts: Promise<void>[] = []
+      for (let i = 0; i < 5; i++) ts.push(ac(i, WD[i], i * 110, 9))
+      for (let i = 5; i < 8; i++) ts.push(ac(i, WD[i], 270 + (i - 5) * 130, 8))
+      await Promise.all(ts)
       if (cancelled.current) return
-      setSubVisible(true)
-      await sleep(450)
-      setHintVisible(true)
-      await sleep(2200)
+      await sleep(260)
+      $('isub')?.classList.add('show')
+      await sleep(650)
+      $('iskip')?.classList.add('show')
+      await sleep(2400)
       if (cancelled.current) return
       launch()
     }
 
-    // init : tout vide
-    WORD.forEach((_, i) => setChar(i, ' '))
     run()
 
     const onClick = () => launch()
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') launch() }
-    window.addEventListener('click', onClick)
+    const onKey = (e: KeyboardEvent) => { if (['Escape', 'Enter', ' '].includes(e.key)) launch() }
     window.addEventListener('keydown', onKey)
+    const el = rootRef.current
+    el?.addEventListener('click', onClick)
     return () => {
       cancelled.current = true
-      window.removeEventListener('click', onClick)
       window.removeEventListener('keydown', onKey)
+      el?.removeEventListener('click', onClick)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return (
-    <div ref={rootRef} className={styles.intro} aria-hidden="true">
-      <div className={styles.board}>
-        {WORD.map((_, i) => (
-          <div key={i} className={`${styles.cell} ${i === 5 ? styles.gap : ''}`}>
-            <div className={`${styles.panel} ${styles.top}`}>
-              <span ref={(el) => { tops.current[i] = el }}>&nbsp;</span>
-            </div>
-            <div className={`${styles.panel} ${styles.bot}`}>
-              <span ref={(el) => { bots.current[i] = el }}>&nbsp;</span>
-            </div>
-            <div className={`${styles.panel} ${styles.mid}`} ref={(el) => { midPanels.current[i] = el }}>
-              <span ref={(el) => { mids.current[i] = el }}>&nbsp;</span>
-            </div>
-          </div>
-        ))}
-      </div>
+  const cell = (i: number) => (
+    <div className="fc" key={i}>
+      <div className="ft"><span id={'t' + i}> </span></div>
+      <div className="fbot"><span id={'b' + i}> </span></div>
+      <div className="fmid" id={'m' + i}><span id={'ms' + i}> </span></div>
+      <div className="fline" />
+    </div>
+  )
 
-      <p className={`${styles.subtitle} ${subVisible ? styles.show : ''}`}>
-        Direction Artistique &amp; Design Graphique
-      </p>
-      <p className={`${styles.hint} ${hintVisible ? styles.show : ''}`}>
-        Cliquez pour entrer
-      </p>
+  return (
+    <div id="intro" ref={rootRef} aria-hidden="true">
+      <div className="fr">{[0, 1, 2, 3, 4].map(cell)}</div>
+      <div className="fr gap" />
+      <div className="fr">{[5, 6, 7].map(cell)}</div>
+      <div className="isub" id="isub">Direction Artistique &amp; Design Graphique</div>
+      <div className="iskip" id="iskip">Cliquer pour passer →</div>
     </div>
   )
 }
