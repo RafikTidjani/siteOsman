@@ -10,30 +10,24 @@ export default function NotFound() {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        padding: '24px',
-        gap: '18px',
+        padding: 24,
+        gap: 18,
       }}
     >
-      <p style={{ fontFamily: 'var(--fd), sans-serif', fontSize: 'clamp(96px, 22vw, 200px)', lineHeight: 1, color: 'var(--ink)' }}>
-        4<span style={{ color: 'var(--red)' }}>0</span>4
-      </p>
-      <p style={{ fontFamily: 'var(--fm), monospace', fontSize: '13px', letterSpacing: '0.1em', color: 'var(--mid)' }}>
-        Page introuvable
+      <p style={{ fontSize: 'clamp(72px, 18vw, 160px)', lineHeight: 1, fontWeight: 800 }}>
+        4<span style={{ color: '#c8321a' }}>0</span>4
       </p>
       <Link
         href="/"
         style={{
-          fontFamily: 'var(--fm), monospace',
-          fontSize: '12px',
+          fontSize: 13,
           letterSpacing: '0.08em',
           textTransform: 'uppercase',
-          color: 'var(--bg)',
-          background: 'var(--ink)',
-          borderRadius: '999px',
+          color: '#ede8df',
+          background: '#1a1714',
+          borderRadius: 999,
           padding: '12px 24px',
-          minHeight: '44px',
-          display: 'inline-flex',
-          alignItems: 'center',
+          textDecoration: 'none',
         }}
       >
         Retour à l&apos;accueil
