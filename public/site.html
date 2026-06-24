@@ -5862,5 +5862,102 @@ async function initSite(){
 
 setTimeout(runIntro,300);
 </script>
+
+<!-- ══════════ AUGMENTATION : vraies images projets (cartes + galeries + lightbox) ══════════ -->
+<style>
+.pvis .pnew{z-index:3 !important;}
+.pvis .pvt{z-index:0;}
+.realimg{z-index:1;}
+</style>
+<script>
+(function(){
+  var A='/assets/';
+  function img(p){return {src:A+p};}
+  function con(p,bg){return {src:A+p,contain:1,bg:bg||'#ede8df'};}
+  function vid(s,po){return {src:A+s,poster:A+po,video:1};}
+
+  var CARD={
+    internship:img('design/internship-main.jpg'),
+    autrement:img('affichage/autrement-v1.jpg'),
+    laproie:img('affichage/la-proie.jpg'),
+    greendorm:img('green-dorm/mockup-haman.jpg'),
+    soyol:img('soyol/mockup-rouge.jpg'),
+    tennis:con('tennis/logo-masc.png','#c8e6d4'),
+    motion:img('motion/poster-internship.jpg'),
+    logommi:con('mmi/logo-sombre.png','#1a1714')
+  };
+  var GAL={
+    internship:[img('design/internship-1.jpg'),img('design/internship-2.jpg'),img('design/internship-3.jpg'),img('design/internship-4.jpg'),img('design/internship-5.jpg'),img('design/internship-6.jpg'),img('design/internship-7.jpg'),img('design/internship-8.jpg')],
+    autrement:[img('affichage/autrement-v1.jpg'),img('affichage/autrement-v2.jpg'),img('affichage/autrement-mockup.jpg')],
+    laproie:[img('affichage/la-proie.jpg')],
+    greendorm:[img('green-dorm/mockup-haman.jpg'),img('green-dorm/mockup-boonel.jpg'),img('green-dorm/flyer-recto.jpg'),img('green-dorm/kakemono.jpg'),img('green-dorm/vitrophanie.jpg'),img('green-dorm/totebag.jpg'),img('green-dorm/planche.jpg'),con('green-dorm/logo-haman.png'),con('green-dorm/logo-boonel.png')],
+    soyol:[img('soyol/mockup-rouge.jpg'),img('soyol/mockup-vert.jpg'),img('soyol/ambiance.jpg'),img('soyol/charte.jpg'),img('soyol/mascotte.jpg'),con('soyol/logo.png')],
+    tennis:[con('tennis/logo-masc.png','#c8e6d4'),con('tennis/logo-fem.png','#c8e6d4'),img('tennis/charte.jpg'),img('tennis/gourde.jpg'),img('tennis/cap.jpg')],
+    motion:[vid('motion/internship-motion.mp4','motion/poster-internship.jpg'),vid('motion/anime-web.mp4','motion/poster-anime.jpg'),vid('motion/montpellier.mp4','motion/poster-montpellier.jpg')],
+    logommi:[con('mmi/logo-sombre.png','#1a1714'),con('mmi/logo-clair.png','#ede8df'),con('mmi/logo-typo-sombre.png','#1a1714'),con('mmi/charte.png','#ede8df'),con('mmi/ancien-logo.png','#ede8df')]
+  };
+
+  function media(it){
+    if(it.video){
+      return '<video src="'+it.src+'" poster="'+(it.poster||'')+'" controls playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1"></video>';
+    }
+    return '<img src="'+it.src+'" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:'+(it.contain?'contain':'cover')+';'+(it.contain?'padding:14px;':'')+'z-index:1">';
+  }
+
+  function injectCards(){
+    document.querySelectorAll('.pcard').forEach(function(card){
+      var m=CARD[card.getAttribute('data-p')]; if(!m)return;
+      var pvis=card.querySelector('.pvis'); if(!pvis||pvis.querySelector('img.realimg'))return;
+      if(m.bg)pvis.style.background=m.bg;
+      var i=document.createElement('img');
+      i.src=m.src; i.alt=''; i.className='realimg';
+      i.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:'+(m.contain?'contain':'cover')+';'+(m.contain?'padding:14px;':'');
+      pvis.insertBefore(i,pvis.firstChild);
+      var b=pvis.querySelector('.pnew'); if(b)b.style.zIndex='3';
+    });
+  }
+
+  function fill(bl,it){
+    Array.prototype.slice.call(bl.children).forEach(function(ch){
+      if(!ch.classList||!ch.classList.contains('mvlb'))ch.remove();
+    });
+    bl.style.position='relative'; bl.style.padding='0';
+    if(it.bg)bl.style.background=it.bg;
+    bl.insertAdjacentHTML('afterbegin',media(it));
+    if(!it.video)bl.setAttribute('data-lb',it.src);
+  }
+  function cell(it){
+    return '<div class="med-cell" style="position:relative;padding:0;'+(it.bg?'background:'+it.bg+';':'')+'"'+(!it.video?' data-lb="'+it.src+'"':'')+'>'+media(it)+'</div>';
+  }
+
+  function decorate(k){
+    try{
+      var imgs=GAL[k]; if(!imgs||!imgs.length)return;
+      var body=document.getElementById('mbody'); if(!body)return;
+      var blocks=body.querySelectorAll('.med-hero-poster,.med-hero,.med-hero-motion,.med-cell');
+      blocks.forEach(function(bl,idx){ if(imgs[idx])fill(bl,imgs[idx]); });
+      if(imgs.length>blocks.length){
+        var frag='';
+        for(var i=blocks.length;i<imgs.length;i+=2){
+          frag+='<div class="med-2col">'+cell(imgs[i])+(imgs[i+1]?cell(imgs[i+1]):'')+'</div>';
+        }
+        body.insertAdjacentHTML('beforeend',frag);
+      }
+      body.querySelectorAll('[data-lb]').forEach(function(el){
+        if(el.__lb)return; el.__lb=1; el.style.cursor='zoom-in';
+        el.addEventListener('click',function(ev){ ev.stopPropagation(); openLb('<img class="lbimg" src="'+el.getAttribute('data-lb')+'">'); });
+      });
+    }catch(e){}
+  }
+
+  if(typeof window.openModal==='function'){
+    var _om=window.openModal;
+    window.openModal=function(k){ _om(k); decorate(k); };
+  }
+
+  function init(){ injectCards(); }
+  if(document.readyState!=='loading')init(); else document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
 </body>
 </html>
