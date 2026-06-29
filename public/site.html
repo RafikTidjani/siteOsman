@@ -596,6 +596,34 @@ footer{
 }
 @media(max-width:700px){.mmclose{display:block;}}
 
+/* ── Navigation projet → projet ── */
+.mnav{display:flex;align-items:stretch;border-top:1px solid var(--lt);}
+.mnav button{
+  flex:1;display:flex;flex-direction:column;gap:4px;
+  background:none;border:none;cursor:pointer;padding:16px 22px;text-align:left;
+  transition:background .15s;
+}
+.mnav button:hover{background:var(--lt);}
+.mnav button:disabled{opacity:.32;cursor:default;}
+.mnav button:disabled:hover{background:none;}
+.mnav .mnav-next{align-items:flex-end;text-align:right;border-left:1px solid var(--lt);}
+.mnav-dir{font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);}
+.mnav-name{font-family:var(--fd);font-size:15px;letter-spacing:.02em;color:var(--ink);}
+.mnav-name .mnav-arr{color:var(--red);}
+
+.marrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:46px;height:46px;border-radius:50%;
+  background:rgba(237,232,223,.12);border:1px solid rgba(237,232,223,.28);
+  color:var(--bg);font-family:var(--fd);font-size:26px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;z-index:5100;
+}
+.marrow:hover{background:rgba(200,50,26,.55);}
+.marrow-prev{left:20px;}
+.marrow-next{right:20px;}
+@media(max-width:1000px){.marrow{display:none;}}
+
 /* ═══ MODAL ÉDITORIAL (refonte) ═══ */
 .med-meta{
   display:grid;grid-template-columns:repeat(4,1fr);
@@ -4559,6 +4587,18 @@ footer{
           <div class="ptagrow"><span class="ptag">Logo</span><span class="ptag">IUT</span><span class="pyr">2022</span></div>
         </div>
       </div>
+      <!-- 9 -->
+      <div class="pcard" data-cats="branding motion" data-p="doze">
+        <div class="pvis" style="background:#262626">
+          <div class="pvt" style="font-size:clamp(20px,4.2vw,36px);color:#8DCBF2;letter-spacing:.08em">DOZE</div>
+          <div class="pnew">Nouveau</div>
+        </div>
+        <div class="pbar" style="background:#F27E93"></div>
+        <div class="pmeta">
+          <span class="ptitle">DOZE — WebTV</span>
+          <div class="ptagrow"><span class="ptag">WebTV</span><span class="ptag">DA</span><span class="pyr">2023</span></div>
+        </div>
+      </div>
     </div>
 
     <!-- CTA fusionné -->
@@ -4573,8 +4613,8 @@ footer{
     <footer>
       <span class="flogo" onclick="gp('r')">OSMAN<span>.</span>ADI</span>
       <ul class="flinks2">
-        <li><a href="#">Instagram</a></li><li><span class="fls">·</span></li>
-        <li><a href="#">LinkedIn</a></li>
+        <li><a href="https://www.instagram.com/leo_grasfik/" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><span class="fls">·</span></li>
+        <li><a href="https://www.linkedin.com/in/osman-adi-b75047209/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
       </ul>
       <span class="fcpy">© 2026 — adiosmandesign.fr</span>
     </footer>
@@ -4725,15 +4765,15 @@ footer{
       <div class="ctr">
         <div style="font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);padding-bottom:14px;border-bottom:1px solid var(--wm)">Disponible pour stages, alternances & freelance</div>
         <a class="ctlnk" href="#" onclick="event.preventDefault();openCv();"><div class="ctll"><span class="ctllb" id="sc0">CV</span><span class="ctlh">Voir en ligne</span></div><span class="ctlarr">↓</span></a>
-        <a class="ctlnk" href="#"><div class="ctll"><span class="ctllb" id="sc1">Instagram</span><span class="ctlh">@adiosmandesign</span></div><span class="ctlarr">→</span></a>
-        <a class="ctlnk" href="#"><div class="ctll"><span class="ctllb" id="sc2">LinkedIn</span><span class="ctlh">linkedin.com/in/osmanadi</span></div><span class="ctlarr">→</span></a>
+        <a class="ctlnk" href="https://www.instagram.com/leo_grasfik/" target="_blank" rel="noopener noreferrer"><div class="ctll"><span class="ctllb" id="sc1">Instagram</span><span class="ctlh">@leo_grasfik</span></div><span class="ctlarr">→</span></a>
+        <a class="ctlnk" href="https://www.linkedin.com/in/osman-adi-b75047209/" target="_blank" rel="noopener noreferrer"><div class="ctll"><span class="ctllb" id="sc2">LinkedIn</span><span class="ctlh">in/osman-adi</span></div><span class="ctlarr">→</span></a>
       </div>
     </div>
     <footer>
       <span class="flogo" onclick="gp('r')">OSMAN<span>.</span>ADI</span>
       <ul class="flinks2">
-        <li><a href="#">Instagram</a></li><li><span class="fls">·</span></li>
-        <li><a href="#">LinkedIn</a></li>
+        <li><a href="https://www.instagram.com/leo_grasfik/" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><span class="fls">·</span></li>
+        <li><a href="https://www.linkedin.com/in/osman-adi-b75047209/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
       </ul>
       <span class="fcpy">© 2026 — adiosmandesign.fr</span>
     </footer>
@@ -4751,8 +4791,11 @@ footer{
     </button>
     <div class="mhd"><span class="mht" id="mttl"></span><span class="mhs" id="msub"></span></div>
     <div id="mbody"></div>
+    <nav class="mnav" id="mnav"></nav>
     <button class="mmclose" onclick="cm()" aria-label="Fermer le projet">Fermer ✕</button>
   </div>
+  <button class="marrow marrow-prev" id="mprev" onclick="navProject(-1)" aria-label="Projet précédent">‹</button>
+  <button class="marrow marrow-next" id="mnext" onclick="navProject(1)" aria-label="Projet suivant">›</button>
 </div>
 
 <!-- ══════════════ LIGHTBOX ══════════════ -->
@@ -4944,7 +4987,6 @@ const PD={
       {bg:'#f5edd1',t:'Soya + Yolk\n= Soyol',c:'#7a8a52',s:16,serif:0},
       {bg:'var(--green)',t:'Pour un plaisir\nsans bémol',c:'#ddf0e8',s:18,serif:1},
       {bg:'#f5f2ed',t:'Packaging\navant',c:'var(--ink)',s:14,serif:0},
-      {bg:'#ddf0e8',t:'Packaging\narrière',c:'var(--green)',s:14,serif:0},
       {bg:'#1a1714',t:'Système de\nmascottes',c:'var(--red)',s:16,serif:0}
     ],
     charte:[{
@@ -4991,6 +5033,33 @@ const PD={
       ],
       typo:[
         {role:'Typographie',name:'Montserrat SemiBold',family:"'Montserrat',sans-serif"}
+      ]
+    }]
+  },
+  doze:{
+    t:'DOZE',s:'WebTV · DUT MMI · 2023',type:'branding',
+    c:"DOZE est une WebTV imaginée et entièrement produite par 12 étudiants en DUT MMI. De la première intention à la diffusion, tout a été réalisé par l'équipe — décors, direction artistique, sound design, transitions, sons, lumière, caméra et 3D. L'objectif : mettre en avant nos projets de fin d'année à travers une émission 100 % faite maison.",
+    m:['Direction artistique','Identité de marque','Décors & lumière','Caméra & montage','Sound design','3D & transitions'],
+    insight:"Tout réaliser nous-mêmes — <span>décors, son, lumière, caméra et 3D</span> — pour transformer la présentation de nos projets en une véritable émission de WebTV.",
+    v:[
+      {bg:'#262626',t:'DOZE\nWebTV',c:'#F2E3D5',s:24,serif:0,label:'Émission — vidéo YouTube'},
+      {bg:'#262626',t:'Logo\nbleu',c:'#8DCBF2',s:18,serif:0,label:'Logotype — bleu'},
+      {bg:'#262626',t:'Logo\ncrème',c:'#F2E3D5',s:18,serif:0,label:'Logotype — crème'},
+      {bg:'#F2E3D5',t:'Picto\nrose',c:'#F27E93',s:18,serif:0,label:'Pictogramme — rose'},
+      {bg:'#F2E3D5',t:'Picto\nsombre',c:'#262626',s:18,serif:0,label:'Pictogramme — sombre'},
+      {bg:'#F2E3D5',t:'Système\nvisuel',c:'#F27E93',s:18,serif:0,label:'Motif & déclinaisons'}
+    ],
+    charte:[{
+      name:'DOZE',
+      colors:[
+        {hex:'#8DCBF2',label:'Bleu — Douceur',text:'#262626'},
+        {hex:'#F27E93',label:'Rose — Énergie',text:'#262626'},
+        {hex:'#262626',label:'Noir — Contraste',text:'#F2E3D5'},
+        {hex:'#F2E3D5',label:'Crème — Lumière',text:'#262626'}
+      ],
+      typo:[
+        {role:'Logo',name:'Franklin Gothic Heavy',family:"'Franklin Gothic','Arial Black',sans-serif"},
+        {role:'Titres & sous-titres',name:'Calibri',family:'Calibri,sans-serif'}
       ]
     }]
   }
@@ -5534,6 +5603,7 @@ function openModal(k){
   }
 
   document.getElementById('mbody').innerHTML=h;
+  mnavRender(k);
   document.getElementById('mwrap').classList.add('open');
   document.body.style.overflow='hidden';
 }
@@ -5545,6 +5615,52 @@ document.getElementById('mwrap').addEventListener('click',e=>{
   if(e.target===document.getElementById('mwrap'))cm();
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){cm();closeLb();}});
+
+/* ═══ NAVIGATION PROJET ↔ PROJET ═══ */
+// Ordre de navigation = ordre visuel des cartes du portfolio (fallback : ordre des données).
+function projOrder(){
+  const fromDom=[...document.querySelectorAll('.pcard[data-p]')].map(c=>c.dataset.p).filter(k=>PD[k]);
+  return fromDom.length?fromDom:Object.keys(PD);
+}
+let __projKey=null;
+function navProject(dir){
+  if(!__projKey)return;
+  const PROJ_ORDER=projOrder();
+  const i=PROJ_ORDER.indexOf(__projKey);
+  if(i<0)return;
+  const j=i+dir;
+  if(j<0||j>=PROJ_ORDER.length)return;
+  (window.openModal||openModal)(PROJ_ORDER[j]);
+  const mb=document.querySelector('.mbox'); if(mb)mb.scrollTop=0;
+}
+function mnavRender(k){
+  __projKey=k;
+  const PROJ_ORDER=projOrder();
+  const i=PROJ_ORDER.indexOf(k);
+  const prev=i>0?PROJ_ORDER[i-1]:null;
+  const next=i>=0&&i<PROJ_ORDER.length-1?PROJ_ORDER[i+1]:null;
+  const nav=document.getElementById('mnav');
+  if(nav){
+    nav.innerHTML=
+      '<button class="mnav-prev" onclick="navProject(-1)"'+(prev?'':' disabled')+'>'
+        +'<span class="mnav-dir"><span class="mnav-arr">←</span> Projet précédent</span>'
+        +'<span class="mnav-name">'+(prev?PD[prev].t:'—')+'</span></button>'
+      +'<button class="mnav-next" onclick="navProject(1)"'+(next?'':' disabled')+'>'
+        +'<span class="mnav-dir">Projet suivant <span class="mnav-arr">→</span></span>'
+        +'<span class="mnav-name">'+(next?PD[next].t:'—')+'</span></button>';
+  }
+  const bp=document.getElementById('mprev'),bn=document.getElementById('mnext');
+  if(bp)bp.style.display=prev?'flex':'none';
+  if(bn)bn.style.display=next?'flex':'none';
+}
+document.addEventListener('keydown',e=>{
+  const w=document.getElementById('mwrap');
+  if(!w||!w.classList.contains('open'))return;
+  const lb=document.getElementById('lb');
+  if(lb&&lb.classList.contains('open'))return;
+  if(e.key==='ArrowLeft')navProject(-1);
+  else if(e.key==='ArrowRight')navProject(1);
+});
 
 /* ═══ LIGHTBOX ═══ */
 function openLb(content){
@@ -5601,7 +5717,7 @@ const T={
     ctavs:'Disponible — 2026',
     ctavt:'Ouvert aux stages, alternances et projets freelance. Basé à Mulhouse, mobilité possible.',
     sc0:'CV', sc1:'Instagram', sc2:'LinkedIn',
-    sc0h:'Voir en ligne', sc1h:'@adiosmandesign', sc2h:'linkedin.com/in/osmanadi',
+    sc0h:'Voir en ligne', sc1h:'@leo_grasfik', sc2h:'in/osman-adi',
     ctrdispo:'Disponible pour stages, alternances & freelance',
     navportfolio:'Portfolio 2024–2026'
   },
@@ -5631,7 +5747,7 @@ const T={
     ctavs:'Available — 2026',
     ctavt:'Open to internships, apprenticeships and freelance projects. Based in Mulhouse, open to mobility.',
     sc0:'CV', sc1:'Instagram', sc2:'LinkedIn',
-    sc0h:'View online', sc1h:'@adiosmandesign', sc2h:'linkedin.com/in/osmanadi',
+    sc0h:'View online', sc1h:'@leo_grasfik', sc2h:'in/osman-adi',
     ctrdispo:'Available for internships, apprenticeships & freelance',
     navportfolio:'Portfolio 2024–2026'
   }
@@ -5872,9 +5988,14 @@ setTimeout(runIntro,300);
 <script>
 (function(){
   var A='/assets/';
+  // ─── Lien YouTube de l'émission DOZE. Coller l'URL ici (ex: 'https://youtu.be/XXXXXXXXXXX').
+  //     Tant que la valeur est vide, un bloc « bientôt disponible » est affiché à la place de la vidéo.
+  var DOZE_YT='';
   function img(p){return {src:A+p};}
   function con(p,bg){return {src:A+p,contain:1,bg:bg||'#ede8df'};}
   function vid(s,po){return {src:A+s,poster:A+po,video:1};}
+  function yt(u){return {yt:u||''};}
+  function ytid(u){var m=String(u||'').match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/)([\w-]{11})/);return m?m[1]:'';}
 
   var CARD={
     internship:img('design/internship-main.jpg'),
@@ -5884,25 +6005,37 @@ setTimeout(runIntro,300);
     soyol:img('soyol/mockup-rouge.jpg'),
     tennis:con('tennis/logo-masc.png','#c8e6d4'),
     motion:img('motion/poster-internship.jpg'),
-    logommi:con('mmi/logo-sombre.png','#1a1714')
+    logommi:con('mmi/logo-sombre.png','#1a1714'),
+    doze:con('doze/logo-bleu.png','#262626')
   };
   var GAL={
     internship:[img('design/internship-1.jpg'),img('design/internship-2.jpg'),img('design/internship-3.jpg'),img('design/internship-4.jpg'),img('design/internship-5.jpg'),img('design/internship-6.jpg'),img('design/internship-7.jpg'),img('design/internship-8.jpg')],
     autrement:[img('affichage/autrement-v1.jpg'),img('affichage/autrement-v2.jpg'),img('affichage/autrement-mockup.jpg')],
     laproie:[img('affichage/la-proie.jpg')],
     greendorm:[img('green-dorm/mockup-haman.jpg'),img('green-dorm/mockup-boonel.jpg'),img('green-dorm/flyer-recto.jpg'),img('green-dorm/kakemono.jpg'),img('green-dorm/vitrophanie.jpg'),img('green-dorm/totebag.jpg'),img('green-dorm/planche.jpg'),con('green-dorm/logo-haman.png'),con('green-dorm/logo-boonel.png')],
-    soyol:[img('soyol/mockup-rouge.jpg'),img('soyol/mockup-vert.jpg'),img('soyol/ambiance.jpg'),img('soyol/charte.jpg'),img('soyol/mascotte.jpg'),con('soyol/logo.png')],
-    tennis:[con('tennis/logo-masc.png','#c8e6d4'),con('tennis/logo-fem.png','#c8e6d4'),img('tennis/charte.jpg'),img('tennis/gourde.jpg'),img('tennis/cap.jpg')],
+    soyol:[img('soyol/mockup-rouge.jpg'),img('soyol/mockup-vert.jpg'),img('soyol/ambiance.jpg'),img('soyol/mascotte.jpg'),con('soyol/logo.png')],
+    tennis:[con('tennis/logo-masc.png','#c8e6d4'),con('tennis/logo-fem.png','#c8e6d4'),img('tennis/gourde.jpg'),img('tennis/cap.jpg')],
     motion:[vid('motion/internship-motion.mp4','motion/poster-internship.jpg'),vid('motion/anime-web.mp4','motion/poster-anime.jpg'),vid('motion/montpellier.mp4','motion/poster-montpellier.jpg')],
-    logommi:[con('mmi/logo-sombre.png','#1a1714'),con('mmi/logo-clair.png','#ede8df'),con('mmi/logo-typo-sombre.png','#1a1714'),con('mmi/charte.png','#ede8df'),con('mmi/ancien-logo.png','#ede8df')]
+    logommi:[con('mmi/logo-sombre.png','#1a1714'),con('mmi/logo-clair.png','#ede8df'),con('mmi/logo-typo-sombre.png','#1a1714'),con('mmi/ancien-logo.png','#ede8df')],
+    doze:[yt(DOZE_YT),con('doze/logo-bleu.png','#262626'),con('doze/logo-creme.png','#262626'),con('doze/icon-rose.png','#F2E3D5'),con('doze/icon-sombre.png','#F2E3D5'),img('doze/pattern.png')]
   };
 
   function media(it){
+    if(it.yt!==undefined){
+      var id=ytid(it.yt);
+      if(id){
+        return '<iframe src="https://www.youtube.com/embed/'+id+'" title="DOZE WebTV" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;z-index:1"></iframe>';
+      }
+      return '<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#262626;z-index:1">'
+        +'<div style="width:54px;height:54px;border-radius:50%;background:#F27E93;display:flex;align-items:center;justify-content:center"><div style="border-left:16px solid #262626;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px"></div></div>'
+        +'<div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#F2E3D5">Vidéo YouTube — bientôt disponible</div></div>';
+    }
     if(it.video){
       return '<video src="'+it.src+'" poster="'+(it.poster||'')+'" controls playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1"></video>';
     }
     return '<img src="'+it.src+'" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:'+(it.contain?'contain':'cover')+';'+(it.contain?'padding:14px;':'')+'z-index:1">';
   }
+  function lbable(it){return !it.video&&it.yt===undefined;}
 
   function injectCards(){
     document.querySelectorAll('.pcard').forEach(function(card){
@@ -5924,10 +6057,10 @@ setTimeout(runIntro,300);
     bl.style.position='relative'; bl.style.padding='0';
     if(it.bg)bl.style.background=it.bg;
     bl.insertAdjacentHTML('afterbegin',media(it));
-    if(!it.video)bl.setAttribute('data-lb',it.src);
+    if(lbable(it))bl.setAttribute('data-lb',it.src);
   }
   function cell(it){
-    return '<div class="med-cell" style="position:relative;padding:0;'+(it.bg?'background:'+it.bg+';':'')+'"'+(!it.video?' data-lb="'+it.src+'"':'')+'>'+media(it)+'</div>';
+    return '<div class="med-cell" style="position:relative;padding:0;'+(it.bg?'background:'+it.bg+';':'')+'"'+(lbable(it)?' data-lb="'+it.src+'"':'')+'>'+media(it)+'</div>';
   }
 
   function decorate(k){
