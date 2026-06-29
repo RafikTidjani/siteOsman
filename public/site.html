@@ -112,7 +112,21 @@ nav{
 }
 .nbtn:hover{background:var(--ink);color:var(--bg);}
 .nc{font-family:var(--fm);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);}
-@media(max-width:480px){.nc{display:none;}}
+@media(max-width:680px){.nc{display:none;}}
+/* ─── En-tête compact sur mobile (défini après .nl/.nlinks/.nbtn) ─── */
+@media(max-width:560px){
+  nav{padding:0 16px;height:50px;gap:8px;}
+  .nl{font-size:18px;letter-spacing:.04em;flex-shrink:0;}
+  .nlinks{gap:14px;}
+  .nlinks a{font-size:10px;letter-spacing:.07em;white-space:nowrap;}
+  .nbtn{font-size:8px;padding:5px 9px;flex-shrink:0;}
+}
+@media(max-width:380px){
+  nav{padding:0 12px;gap:6px;}
+  .nl{font-size:15px;}
+  .nlinks{gap:10px;}
+  .nlinks a{font-size:9px;letter-spacing:.04em;}
+}
 
 /* ═══ PAGES ═══ */
 .pg{display:none;}.pg.on{display:block;}
@@ -187,6 +201,17 @@ nav{
 .shn{font-family:var(--fd);font-size:52px;color:var(--lt);line-height:1;}
 .sht{font-family:var(--fd);font-size:28px;letter-spacing:.04em;min-height:32px;}
 .shc{font-family:var(--fm);font-size:9px;color:var(--mid);}
+@media(max-width:560px){
+  .sh{padding:12px 16px;}
+  .shl{gap:8px;}
+  .shn{font-size:40px;}
+  .sht{font-size:21px;min-height:24px;}
+  .shc{flex-shrink:0;padding-left:10px;white-space:nowrap;}
+}
+@media(max-width:380px){
+  .shn{font-size:32px;}
+  .sht{font-size:17px;min-height:20px;}
+}
 
 /* filtres */
 .filt{
@@ -622,6 +647,7 @@ footer{
 .marrow:hover{background:rgba(200,50,26,.55);}
 .marrow-prev{left:20px;}
 .marrow-next{right:20px;}
+.marrow.is-off{display:none;}
 @media(max-width:1000px){.marrow{display:none;}}
 
 /* ═══ MODAL ÉDITORIAL (refonte) ═══ */
@@ -5650,8 +5676,10 @@ function mnavRender(k){
         +'<span class="mnav-name">'+(next?PD[next].t:'—')+'</span></button>';
   }
   const bp=document.getElementById('mprev'),bn=document.getElementById('mnext');
-  if(bp)bp.style.display=prev?'flex':'none';
-  if(bn)bn.style.display=next?'flex':'none';
+  // On bascule une classe plutôt qu'un style inline, sinon la media query
+  // qui masque les flèches sur mobile (<1000px) serait écrasée.
+  if(bp)bp.classList.toggle('is-off',!prev);
+  if(bn)bn.classList.toggle('is-off',!next);
 }
 document.addEventListener('keydown',e=>{
   const w=document.getElementById('mwrap');
